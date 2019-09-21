@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
-  "version": "4.0.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "codefen",
+  "version": "1.0.0",
+  "description": "",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/codefen/codefen.git"
   },
   "engines": {
     "npm": ">=5",
     "node": ">=8.15.1"
   },
-  "author": "Max Stoiber",
+  "author": "Adrian Pietrzak",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -62,6 +62,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "antd": "^3.23.3",
     "chalk": "^2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.5.2",
@@ -80,6 +81,7 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-helmet": "6.0.0-beta",
+    "react-image-webp": "^0.3.1",
     "react-intl": "2.9.0",
     "react-redux": "7.1.1",
     "react-router-dom": "5.0.1",

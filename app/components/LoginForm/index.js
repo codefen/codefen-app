@@ -83,7 +83,7 @@ export default function LoginForm(props) {
           <Button htmlType="submit" disabled={isLoading}>
             <FormattedMessage {...messages.access} />
           </Button>
-          <Link href="">
+          <Link to="/login">
             <FormattedMessage {...messages.forgotPassword} />
           </Link>
         </LoginFormActions>

@@ -13,15 +13,21 @@ import Menu from './Menu';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import NavLink from 'components/NavLink';
 
 function LoginNavigation() {
   return (
-    <Menu defaultSelectedKeys={['1']} mode="inline">
+    <Menu mode="inline" defaultSelectedKeys={['1']}>
       <Menu.Item key="1">
-        <FormattedMessage {...messages.access} />
+        <NavLink to="/login">
+          <FormattedMessage {...messages.access} />
+        </NavLink>
       </Menu.Item>
+
       <Menu.Item key="2">
-        <FormattedMessage {...messages.newUser} />
+        <NavLink to="/login">
+          <FormattedMessage {...messages.newUser} />
+        </NavLink>
       </Menu.Item>
     </Menu>
   );

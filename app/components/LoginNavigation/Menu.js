@@ -21,6 +21,12 @@ const MenuWrapper = styled(Menu)`
       &:hover {
         color: ${SECONDARY_RED};
       }
+
+      > a {
+        &:hover {
+          color: ${SECONDARY_RED};
+        }
+      }
     }
 
     .ant-menu-item-selected {
@@ -31,6 +37,14 @@ const MenuWrapper = styled(Menu)`
 
       &:after {
         border-right: 3px solid ${PRIMARY_RED};
+      }
+
+      > a {
+        color: ${PRIMARY_RED};
+
+        &:hover {
+          color: ${SECONDARY_RED};
+        }
       }
     }
   }

@@ -9,8 +9,12 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.components.LoginNavigation';
 
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the LoginNavigation component!',
+  access: {
+    id: `${scope}.access`,
+    defaultMessage: 'access',
+  },
+  newUser: {
+    id: `${scope}.newUser`,
+    defaultMessage: 'new user',
   },
 });

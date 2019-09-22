@@ -20,7 +20,6 @@ import { useInjectReducer } from 'utils/injectReducer';
 
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 export default function LoginPage() {
   useInjectReducer({ key: 'loginPage', reducer });

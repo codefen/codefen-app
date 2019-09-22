@@ -25,9 +25,11 @@ const loginPageReducer = produce((draft, action) => {
   switch (action.type) {
     case CHANGE_EMAIL:
       draft.email = action.email;
+      draft.error = '';
       break;
     case CHANGE_PASSWORD:
       draft.password = action.password;
+      draft.error = '';
       break;
     case LOGIN:
       draft.isLoading = true;

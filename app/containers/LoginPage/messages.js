@@ -9,8 +9,20 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.containers.LoginPage';
 
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the LoginPage container!',
+  emailError: {
+    id: `${scope}.emailError`,
+    defaultMessage: 'Your email address is not valid.',
+  },
+  emailEmpty: {
+    id: `${scope}.emailEmpty`,
+    defaultMessage: 'Your email address is empty.',
+  },
+  passwordEmpty: {
+    id: `${scope}.passwordEmpty`,
+    defaultMessage: 'Your password is empty.',
+  },
+  loginError: {
+    id: `${scope}.loginError`,
+    defaultMessage: 'Invalid email or password.',
   },
 });

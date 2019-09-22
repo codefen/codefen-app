@@ -8,6 +8,7 @@ import produce from 'immer';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
 
 export const initialState = {
+  session: '',
   user: {
     id: '',
     role: '',
@@ -29,6 +30,7 @@ export const initialState = {
 const loginPageReducer = produce((draft, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      draft.session = action.session;
       draft.user = action.user;
   }
 }, initialState);

@@ -5,7 +5,7 @@
  */
 
 import styled from 'styled-components';
-import { PRIMARY_RED } from 'utils/colors';
+import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
 
 const Form = styled.form`
   .ant-input-password {
@@ -17,6 +17,12 @@ const Form = styled.form`
       .ant-input {
         &:not(.ant-input-disabled) {
           border-color: ${PRIMARY_RED};
+        }
+      }
+
+      .ant-input-password-icon {
+        &:hover {
+          color: ${SECONDARY_RED};
         }
       }
     }

@@ -9,8 +9,20 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.components.LoginForm';
 
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the LoginForm component!',
+  forgotPassword: {
+    id: `${scope}.forgotPassword`,
+    defaultMessage: 'Forgot password?',
+  },
+  access: {
+    id: `${scope}.access`,
+    defaultMessage: 'access',
+  },
+  email: {
+    id: `${scope}.email`,
+    defaultMessage: 'Email',
+  },
+  password: {
+    id: `${scope}.password`,
+    defaultMessage: 'Password',
   },
 });

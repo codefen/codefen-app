@@ -24,8 +24,10 @@ const MenuWrapper = styled(Menu)`
     }
 
     .ant-menu-item-selected {
-      background-color: #ffe6e6;
+      background-color: rgba(0, 0, 0, 0.05);
       color: ${PRIMARY_RED};
+      pointer-events: none;
+      font-weight: 700;
 
       &:after {
         border-right: 3px solid ${PRIMARY_RED};

@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 // Import Components
 import LoginFormContainer from './LoginFormContainer';
 import LoginFormActions from './LoginFormActions';
+import LoginFormError from './LoginFormError';
 import Form from 'components/Form';
 import Input from 'components/Input';
 import Button from 'components/Button';
@@ -50,31 +51,41 @@ export default function LoginForm(props) {
   return (
     <LoginFormContainer>
       <Form onSubmit={handleLogin}>
-        <Input
-          prefix={<Icon type="user" />}
-          placeholder="Email"
-          value={email}
-          onChange={onChangeEmail}
-          disabled={isLoading}
-          error={error}
-          type="email"
-        />
+        <FormattedMessage {...messages.email}>
+          {emailPlaceholder => (
+            <Input
+              prefix={<Icon type="user" />}
+              placeholder={emailPlaceholder}
+              value={email}
+              onChange={onChangeEmail}
+              disabled={isLoading}
+              type="email"
+            />
+          )}
+        </FormattedMessage>
 
-        <Input.Password
-          prefix={<Icon type="lock" />}
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={onChangePassword}
-          disabled={isLoading}
-          error={error}
-        />
+        <FormattedMessage {...messages.password}>
+          {passwordPlaceholder => (
+            <Input.Password
+              prefix={<Icon type="lock" />}
+              type="password"
+              placeholder={passwordPlaceholder}
+              value={password}
+              onChange={onChangePassword}
+              disabled={isLoading}
+            />
+          )}
+        </FormattedMessage>
+
+        {error && <LoginFormError>{error}</LoginFormError>}
 
         <LoginFormActions>
           <Button htmlType="submit" disabled={isLoading}>
-            access
+            <FormattedMessage {...messages.access} />
           </Button>
-          <Link href="">Forgot password?</Link>
+          <Link href="">
+            <FormattedMessage {...messages.forgotPassword} />
+          </Link>
         </LoginFormActions>
       </Form>
     </LoginFormContainer>

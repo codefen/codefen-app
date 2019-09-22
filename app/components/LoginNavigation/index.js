@@ -17,8 +17,12 @@ import messages from './messages';
 function LoginNavigation() {
   return (
     <Menu defaultSelectedKeys={['1']} mode="inline">
-      <Menu.Item key="1">access</Menu.Item>
-      <Menu.Item key="2">new user</Menu.Item>
+      <Menu.Item key="1">
+        <FormattedMessage {...messages.access} />
+      </Menu.Item>
+      <Menu.Item key="2">
+        <FormattedMessage {...messages.newUser} />
+      </Menu.Item>
     </Menu>
   );
 }

@@ -9,6 +9,12 @@ const selectRouter = state => state.router;
 
 const selectAppDomain = state => state.app || initialState;
 
+const makeSelectSession = () =>
+  createSelector(
+    selectAppDomain,
+    appState => appState.session,
+  );
+
 const makeSelectUser = () =>
   createSelector(
     selectAppDomain,
@@ -21,4 +27,4 @@ const makeSelectLocation = () =>
     routerState => routerState.location,
   );
 
-export { makeSelectLocation, makeSelectUser };
+export { makeSelectLocation, makeSelectSession, makeSelectUser };

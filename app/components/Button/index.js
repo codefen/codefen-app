@@ -16,7 +16,6 @@ const ButtonWrapper = styled(Button)`
   width: 100%;
   max-width: 100px;
   border-radius: 0;
-  font-size: 15px;
   color: #fff;
 
   &:hover {

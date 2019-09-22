@@ -1,6 +1,6 @@
 /**
  *
- * Tests for LoginLogo
+ * Tests for LoginAside
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -9,12 +9,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import LoginLogo from '../index';
+import LoginAside from '../index';
 
-describe('<LoginLogo />', () => {
+describe('<LoginAside />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<LoginLogo />);
+    render(<LoginAside />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -30,7 +30,7 @@ describe('<LoginLogo />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<LoginLogo />);
+    } = render(<LoginAside />);
     expect(firstChild).toMatchSnapshot();
   });
 });

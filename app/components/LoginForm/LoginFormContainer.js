@@ -6,7 +6,7 @@
 
 import styled from 'styled-components';
 
-const LoginFormContainer = styled.div`
+const LoginFormContainer = styled.main`
   padding: 45px;
   width: 70%;
 `;

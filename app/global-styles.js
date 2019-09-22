@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { PRIMARY_RED } from 'utils/colors';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -7,8 +8,12 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  html {
+    --antd-wave-shadow-color: ${PRIMARY_RED};
+  }
+
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Questrial', sans-serif;
   }
 
   #app {
@@ -19,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Questrial', sans-serif;
     line-height: 1.5em;
   }
 

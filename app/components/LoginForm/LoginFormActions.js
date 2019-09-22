@@ -6,7 +6,7 @@
 
 import styled from 'styled-components';
 
-const LoginFormActions = styled.div`
+const LoginFormActions = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;

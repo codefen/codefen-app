@@ -9,7 +9,7 @@ import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
 
 const Link = styled.a`
   display: block;
-  color: ${PRIMARY_RED};
+  color: rgba(0, 0, 0, 0.25);
   font-size: 12px;
 
   &:hover {

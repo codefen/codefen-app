@@ -56,20 +56,23 @@ export default function LoginForm(props) {
           value={email}
           onChange={onChangeEmail}
           disabled={isLoading}
+          error={error}
+          type="email"
         />
 
-        <Input
+        <Input.Password
           prefix={<Icon type="lock" />}
           type="password"
           placeholder="Password"
           value={password}
           onChange={onChangePassword}
           disabled={isLoading}
+          error={error}
         />
 
         <LoginFormActions>
           <Button htmlType="submit" disabled={isLoading}>
-            Log in
+            access
           </Button>
           <Link href="">Forgot password?</Link>
         </LoginFormActions>

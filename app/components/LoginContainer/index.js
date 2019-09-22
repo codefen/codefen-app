@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { SECONDARY_RED } from 'utils/colors';
 import background from 'images/background.svg';
 
-const LoginContainer = styled.main`
+const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

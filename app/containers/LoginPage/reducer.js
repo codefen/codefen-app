@@ -39,7 +39,7 @@ const loginPageReducer = produce((draft, action) => {
       break;
     case LOGIN_ERROR:
       draft.isLoading = false;
-      draft.email = action.error;
+      draft.error = action.error;
       break;
   }
 }, initialState);

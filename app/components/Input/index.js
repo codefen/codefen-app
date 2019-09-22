@@ -11,7 +11,7 @@ import { PRIMARY_RED } from 'utils/colors';
 const InputWrapper = styled(Input)`
   height: 36px;
   font-size: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 
   &:hover {
     .ant-input {
@@ -23,6 +23,7 @@ const InputWrapper = styled(Input)`
 
   .ant-input {
     border-radius: 0;
+    background-color: ${props => props.error && '#ff000014'};
 
     &:hover,
     &:focus {

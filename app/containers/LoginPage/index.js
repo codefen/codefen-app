@@ -12,7 +12,7 @@ import { Form } from 'antd';
 import LoginForm from 'components/LoginForm';
 import LoginWrapper from 'components/LoginWrapper';
 import LoginContainer from 'components/LoginContainer';
-import LoginLogo from 'components/LoginLogo';
+import LoginAside from 'components/LoginAside';
 
 // Import Utils
 import { useInjectSaga } from 'utils/injectSaga';
@@ -35,7 +35,7 @@ export default function LoginPage() {
 
       <LoginContainer>
         <LoginWrapper>
-          <LoginLogo />
+          <LoginAside />
           <LoginForm />
         </LoginWrapper>
       </LoginContainer>

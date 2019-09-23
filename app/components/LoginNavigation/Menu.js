@@ -5,6 +5,7 @@
  */
 
 import styled from 'styled-components';
+import { media } from 'utils';
 import { Menu } from 'antd';
 import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
 
@@ -45,6 +46,22 @@ const MenuWrapper = styled(Menu)`
         &:hover {
           color: ${SECONDARY_RED};
         }
+      }
+    }
+
+    &.ant-menu-horizontal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > .ant-menu-item-selected,
+      .ant-menu-item-active {
+        border-bottom: 2px solid ${PRIMARY_RED};
+      }
+
+      .ant-menu-item {
+        width: 100%;
+        text-align: center;
       }
     }
   }

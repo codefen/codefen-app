@@ -10,13 +10,14 @@ import LogoPng from 'images/logo.png';
 import LoginAsideContainer from './LoginAsideContainer';
 import LoginLogoWrapper from './LoginLogoWrapper';
 import LoginNavigation from 'components/LoginNavigation';
+import LogoAsideHeader from './LogoAsideHeader';
 
 export default function LoginLogo() {
   return (
     <LoginAsideContainer>
-      <header>
+      <LogoAsideHeader>
         <LoginLogoWrapper src={LogoPng} alt="Codefen" />
-      </header>
+      </LogoAsideHeader>
       <LoginNavigation />
     </LoginAsideContainer>
   );

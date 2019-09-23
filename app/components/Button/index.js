@@ -7,6 +7,7 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
+import { media } from 'utils';
 
 const ButtonWrapper = styled(Button)`
   background-color: ${PRIMARY_RED};
@@ -14,7 +15,7 @@ const ButtonWrapper = styled(Button)`
   display: block;
   height: 36px;
   width: 100%;
-  max-width: 100px;
+  max-width: 115px;
   border-radius: 0;
   color: #fff;
 
@@ -29,6 +30,10 @@ const ButtonWrapper = styled(Button)`
     border-color: ${PRIMARY_RED};
     color: #fff;
   }
+
+  ${media.tablet`
+    max-width: 100px;
+  `}
 `;
 
 export default ButtonWrapper;

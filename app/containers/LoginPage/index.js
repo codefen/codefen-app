@@ -8,7 +8,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 // Import Components
-import { Form } from 'antd';
 import LoginForm from 'components/LoginForm';
 import LoginWrapper from 'components/LoginWrapper';
 import LoginContainer from 'components/LoginContainer';
@@ -41,5 +40,3 @@ export default function LoginPage() {
     </>
   );
 }
-
-LoginPage.propTypes = {};

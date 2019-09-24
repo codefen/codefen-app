@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-import Menu from './Menu';
+import Menu from 'components/Menu';
 import MediaQuery from 'react-responsive';
 import { sizes } from 'utils/media';
 import { FormattedMessage } from 'react-intl';

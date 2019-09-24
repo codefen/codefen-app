@@ -7,6 +7,7 @@ import { LOGIN } from './constants';
 import { makeSelectEmail, makeSelectPassword } from './selectors';
 import { loginErrorAction, loginSuccessAction } from './actions';
 import { API_BASE_URL, API_USER_ACCESS } from 'utils/api';
+import { push } from 'connected-react-router';
 
 export function* login() {
   const email = yield select(makeSelectEmail());
@@ -40,6 +41,7 @@ export function* login() {
       );
 
     yield put(loginSuccessAction(response.session, response.user));
+    yield put(push('/'));
   } catch (error) {
     yield put(loginErrorAction(error));
   }

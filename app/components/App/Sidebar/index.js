@@ -8,15 +8,18 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-const { Header, Content, Footer, Sider } = Layout;
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Logo from 'images/logo.png';
+
+import SidebarWrapper from './SidebarWrapper';
 import Navigation from 'components/App/Navigation';
+import LoginLogoWrapper from './LoginLogoWrapper';
 
 export default function Sidebar() {
   return (
-    <Sider collapsible>
-      <div className="logo">test</div>
+    <SidebarWrapper>
+      <LoginLogoWrapper src={Logo} />
+
       <Navigation />
-    </Sider>
+    </SidebarWrapper>
   );
 }

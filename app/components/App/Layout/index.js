@@ -8,19 +8,20 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { Sider, Content } = Layout;
+import { Layout } from 'antd';
+import ContentWrapper from './ContentWrapper';
 import Sidebar from 'components/App/Sidebar';
 import Header from 'components/App/Header';
+import LayoutWrapper from './LayoutWrapper';
 
 export default function LayoutComponent({ children }) {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <LayoutWrapper>
       <Sidebar />
       <Layout>
         <Header />
-        <Content>{children}</Content>
+        <ContentWrapper>{children}</ContentWrapper>
       </Layout>
-    </Layout>
+    </LayoutWrapper>
   );
 }

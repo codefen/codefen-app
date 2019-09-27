@@ -6,8 +6,10 @@
 
 import produce from 'immer';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
+import { TOGGLE_SIDEBAR } from './constants';
 
 export const initialState = {
+  isCollapsed: false,
   session: '',
   user: {
     id: '',
@@ -27,12 +29,16 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const loginPageReducer = produce((draft, action) => {
+const appReducer = produce((draft, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       draft.session = action.session;
       draft.user = action.user;
+      break;
+    case TOGGLE_SIDEBAR:
+      draft.isCollapsed = !draft.isCollapsed;
+      break;
   }
 }, initialState);
 
-export default loginPageReducer;
+export default appReducer;

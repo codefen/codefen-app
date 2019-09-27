@@ -40,10 +40,11 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
 });
 
-export default function LoginForm(props) {
+export default function LoginForm() {
   const { email, password, error, isLoading } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const onChangeEmail = evt => dispatch(changeEmailAction(evt.target.value));
+  const onChangeEmail = evt =>
+    dispatch(changeEmailAction(evt.target.value)) && console.log(email);
   const onChangePassword = evt =>
     dispatch(changePasswordAction(evt.target.value));
   const handleLogin = evt => dispatch(loginAction()) && evt.preventDefault();
@@ -83,6 +84,7 @@ export default function LoginForm(props) {
           <Button htmlType="submit" disabled={isLoading}>
             <FormattedMessage {...messages.access} />
           </Button>
+
           <Link to="/login">
             <FormattedMessage {...messages.forgotPassword} />
           </Link>
@@ -91,5 +93,3 @@ export default function LoginForm(props) {
     </LoginFormContainer>
   );
 }
-
-LoginForm.propTypes = {};

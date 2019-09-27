@@ -5,8 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { Layout } from 'antd';
 import ContentWrapper from './ContentWrapper';
@@ -25,3 +24,7 @@ export default function LayoutComponent({ children }) {
     </LayoutWrapper>
   );
 }
+
+LayoutComponent.propTypes = {
+  children: PropTypes.node.isRequired,
+};

@@ -21,10 +21,21 @@ const makeSelectUser = () =>
     appState => appState.user,
   );
 
+const makeSelectIsCollapsed = () =>
+  createSelector(
+    selectAppDomain,
+    appState => appState.isCollapsed,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
     routerState => routerState.location,
   );
 
-export { makeSelectLocation, makeSelectSession, makeSelectUser };
+export {
+  makeSelectLocation,
+  makeSelectSession,
+  makeSelectIsCollapsed,
+  makeSelectUser,
+};

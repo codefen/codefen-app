@@ -8,7 +8,11 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
+// Import Utils
+import { useInjectReducer } from 'utils/injectReducer';
+import reducer from 'containers/App/reducer';
 
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -21,6 +25,8 @@ import 'antd/dist/antd.css';
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
+  useInjectReducer({ key: 'app', reducer });
+
   return (
     <div>
       <Switch>

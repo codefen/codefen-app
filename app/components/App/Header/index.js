@@ -4,14 +4,35 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
-const { Header, Content, Footer, Sider } = Layout;
+import { createStructuredSelector } from 'reselect';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import HeaderWrapper from './HeaderWrapper';
+import { useSelector, useDispatch } from 'react-redux';
+const { Header, Content, Footer, Sider } = Layout;
+
+import { makeSelectIsCollapsed } from 'containers/App/selectors';
+import { toggleSidebarAction } from 'containers/App/actions';
+
+const stateSelector = createStructuredSelector({
+  isCollapsed: makeSelectIsCollapsed(),
+});
 
 export default function HeaderComponent() {
-  return <HeaderWrapper>test</HeaderWrapper>;
+  const { isCollapsed } = useSelector(stateSelector);
+  const dispatch = useDispatch();
+  const onToggleSidebar = () => dispatch(toggleSidebarAction());
+
+  return (
+    <HeaderWrapper>
+      <Icon
+        className="trigger"
+        style={{ color: '#fff' }}
+        type={isCollapsed ? 'menu-unfold' : 'menu-fold'}
+        onClick={onToggleSidebar}
+      />
+    </HeaderWrapper>
+  );
 }

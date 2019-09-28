@@ -6,6 +6,7 @@
 
 import produce from 'immer';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
+import { GET_ISSUES_SUCCESS } from 'containers/IssuesPage/constants';
 import { TOGGLE_SIDEBAR } from './constants';
 
 export const initialState = {
@@ -26,6 +27,23 @@ export const initialState = {
     eliminado: '',
     creacion: '',
   },
+  company: {
+    id: '',
+    name: '',
+    main_resource: '',
+    nickname: '',
+    small_desc: '',
+    issues_solved: '',
+    issues_open: '',
+    plan: '',
+    address_pais: '',
+    address_provincia: '',
+    address_ciudad: '',
+    address_self: '',
+    profile_media: '',
+    eliminado: '',
+    creacion: '',
+  },
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -34,6 +52,9 @@ const appReducer = produce((draft, action) => {
     case LOGIN_SUCCESS:
       draft.session = action.session;
       draft.user = action.user;
+      break;
+    case GET_ISSUES_SUCCESS:
+      draft.company = action.company;
       break;
     case TOGGLE_SIDEBAR:
       draft.isCollapsed = !draft.isCollapsed;

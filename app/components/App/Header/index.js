@@ -29,7 +29,7 @@ export default function HeaderComponent() {
     <HeaderWrapper open={isCollapsed}>
       <Icon
         className="trigger"
-        style={{ color: '#fff', fontSize: 16 }}
+        style={{ color: '#fff', fontSize: 18 }}
         type={isCollapsed ? 'menu-unfold' : 'menu-fold'}
         onClick={onToggleSidebar}
       />

@@ -41,7 +41,7 @@ export function* login() {
       );
 
     yield put(loginSuccessAction(response.session, response.user));
-    yield put(push('/'));
+    yield put(push('/issues'));
   } catch (error) {
     yield put(loginErrorAction(error));
   }

@@ -5,13 +5,21 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import FooterWrapper from './FooterWrapper';
+import { useSelector } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectIsCollapsed } from 'containers/App/selectors';
+
+const stateSelector = createStructuredSelector({
+  isCollapsed: makeSelectIsCollapsed(),
+});
 
 export default function Footer() {
+  const { isCollapsed } = useSelector(stateSelector);
+
   return (
-    <Footer style={{ textAlign: 'center' }}>
-      Ant Design ©2018 Created by Ant UED
-    </Footer>
+    <FooterWrapper open={isCollapsed}>
+      Copyright &copy; 2019 | codefen.com
+    </FooterWrapper>
   );
 }

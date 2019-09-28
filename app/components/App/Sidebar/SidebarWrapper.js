@@ -16,6 +16,7 @@ const SidebarWrapper = styled(Sider)`
     position: fixed;
     left: 0;
     transition: all 0.1s ease-in-out;
+    box-shadow: 4px 0px 8px -3px rgba(17, 17, 17, 0.6);
   }
 `;
 

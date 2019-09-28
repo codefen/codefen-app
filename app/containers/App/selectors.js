@@ -21,6 +21,12 @@ const makeSelectUser = () =>
     appState => appState.user,
   );
 
+const makeSelectCompany = () =>
+  createSelector(
+    selectAppDomain,
+    appState => appState.company,
+  );
+
 const makeSelectIsCollapsed = () =>
   createSelector(
     selectAppDomain,
@@ -38,4 +44,5 @@ export {
   makeSelectSession,
   makeSelectIsCollapsed,
   makeSelectUser,
+  makeSelectCompany,
 };

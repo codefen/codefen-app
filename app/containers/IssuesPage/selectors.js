@@ -15,11 +15,22 @@ const selectIssuesPageDomain = state => state.issuesPage || initialState;
  * Default selector used by IssuesPage
  */
 
-const makeSelectIssuesPage = () =>
+const makeSelectIssues = () =>
   createSelector(
     selectIssuesPageDomain,
-    substate => substate,
+    issuesPageState => issuesPageState.issues,
   );
 
-export default makeSelectIssuesPage;
-export { selectIssuesPageDomain };
+const makeSelectIsLoading = () =>
+  createSelector(
+    selectIssuesPageDomain,
+    issuesPageState => issuesPageState.isLoading,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectIssuesPageDomain,
+    issuesPageState => issuesPageState.error,
+  );
+
+export { makeSelectIssues, makeSelectIsLoading, makeSelectError };

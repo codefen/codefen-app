@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
@@ -17,7 +17,11 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectIssuesPage from './selectors';
+import {
+  makeSelectIssues,
+  makeSelectIsLoading,
+  makeSelectError,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -25,9 +29,12 @@ import Sidebar from 'components/App/Sidebar';
 import Header from 'components/App/Header';
 
 import background from 'images/background.svg';
+import { getIssuesAction } from './actions';
 
 const stateSelector = createStructuredSelector({
-  issuesPage: makeSelectIssuesPage(),
+  issues: makeSelectIssues(),
+  isLoading: makeSelectIsLoading(),
+  error: makeSelectError(),
 });
 
 function IssuesPage() {
@@ -35,9 +42,14 @@ function IssuesPage() {
   useInjectSaga({ key: 'issuesPage', saga });
 
   /* eslint-disable no-unused-vars */
-  const { issuesPage } = useSelector(stateSelector);
+  const { issues, isLoading, error } = useSelector(stateSelector);
   const dispatch = useDispatch();
+  const handleIssues = () => dispatch(getIssuesAction());
   /* eslint-enable no-unused-vars */
+
+  useEffect(() => {
+    handleIssues();
+  }, []);
 
   return (
     <>

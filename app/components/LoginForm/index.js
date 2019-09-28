@@ -43,8 +43,7 @@ const stateSelector = createStructuredSelector({
 export default function LoginForm() {
   const { email, password, error, isLoading } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const onChangeEmail = evt =>
-    dispatch(changeEmailAction(evt.target.value)) && console.log(email);
+  const onChangeEmail = evt => dispatch(changeEmailAction(evt.target.value));
   const onChangePassword = evt =>
     dispatch(changePasswordAction(evt.target.value));
   const handleLogin = evt => dispatch(loginAction()) && evt.preventDefault();

@@ -27,7 +27,7 @@ export default function Sidebar() {
 
   return (
     <SidebarWrapper trigger={null} collapsible collapsed={isCollapsed}>
-      <LoginLogoWrapper src={Logo} />
+      <LoginLogoWrapper open={isCollapsed} />
 
       <Navigation />
     </SidebarWrapper>

@@ -12,16 +12,25 @@ import ContentWrapper from './ContentWrapper';
 import Sidebar from 'components/App/Sidebar';
 import Header from 'components/App/Header';
 import LayoutWrapper from './LayoutWrapper';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectIsCollapsed } from 'containers/App/selectors';
+import { useSelector } from 'react-redux';
+
+const stateSelector = createStructuredSelector({
+  isCollapsed: makeSelectIsCollapsed(),
+});
 
 export default function LayoutComponent({ children }) {
+  const { isCollapsed } = useSelector(stateSelector);
+
   return (
-    <LayoutWrapper>
+    <Layout>
       <Sidebar />
-      <Layout>
+      <LayoutWrapper open={isCollapsed}>
         <Header />
         <ContentWrapper>{children}</ContentWrapper>
-      </Layout>
-    </LayoutWrapper>
+      </LayoutWrapper>
+    </Layout>
   );
 }
 

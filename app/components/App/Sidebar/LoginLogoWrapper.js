@@ -5,10 +5,16 @@
  */
 
 import styled from 'styled-components';
+import LogoDesktop from 'images/logo.png';
+import LogoMobile from 'images/logo_min.png';
 
-const LoginLogoWrapper = styled.img`
+const LoginLogoWrapper = styled.div`
   margin: 15px auto;
-  display: block;
+  background-image: ${props =>
+    props.open ? `url(${LogoMobile})` : `url(${LogoDesktop})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   max-height: 53px;
   height: 100%;
 `;

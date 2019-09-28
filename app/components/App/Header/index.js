@@ -26,10 +26,10 @@ export default function HeaderComponent() {
   const onToggleSidebar = () => dispatch(toggleSidebarAction());
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper open={isCollapsed}>
       <Icon
         className="trigger"
-        style={{ color: '#fff' }}
+        style={{ color: '#fff', fontSize: 16 }}
         type={isCollapsed ? 'menu-unfold' : 'menu-fold'}
         onClick={onToggleSidebar}
       />

@@ -21,6 +21,12 @@ const makeSelectIssues = () =>
     issuesPageState => issuesPageState.issues,
   );
 
+const makeSelectTransformIssues = () =>
+  createSelector(
+    selectIssuesPageDomain,
+    issuesPageState => issuesPageState.transformIssues,
+  );
+
 const makeSelectIsLoading = () =>
   createSelector(
     selectIssuesPageDomain,
@@ -33,4 +39,9 @@ const makeSelectError = () =>
     issuesPageState => issuesPageState.error,
   );
 
-export { makeSelectIssues, makeSelectIsLoading, makeSelectError };
+export {
+  makeSelectIssues,
+  makeSelectTransformIssues,
+  makeSelectIsLoading,
+  makeSelectError,
+};

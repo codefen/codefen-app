@@ -5,7 +5,12 @@
  */
 
 import produce from 'immer';
-import { GET_ISSUES, GET_ISSUES_SUCCESS, GET_ISSUES_ERROR } from './constants';
+import {
+  GET_ISSUES,
+  GET_ISSUES_SUCCESS,
+  GET_ISSUES_ERROR,
+  GET_TRANSFORM_ISSUES,
+} from './constants';
 
 export const initialState = {
   isLoading: false,
@@ -32,6 +37,7 @@ export const initialState = {
     eliminado: '',
     creacion: '',
   },
+  transformIssues: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -41,12 +47,15 @@ const issuesPageReducer = produce((draft, action) => {
       draft.isLoading = true;
       break;
     case GET_ISSUES_SUCCESS:
-      draft.isLoading = false;
       draft.issues = action.issues;
       break;
     case GET_ISSUES_ERROR:
       draft.isLoading = false;
       draft.error = action.error;
+      break;
+    case GET_TRANSFORM_ISSUES:
+      draft.isLoading = false;
+      draft.transformIssues = action.transformIssues;
       break;
   }
 }, initialState);

@@ -4,7 +4,12 @@
  *
  */
 
-import { GET_ISSUES, GET_ISSUES_SUCCESS, GET_ISSUES_ERROR } from './constants';
+import {
+  GET_ISSUES,
+  GET_ISSUES_SUCCESS,
+  GET_ISSUES_ERROR,
+  GET_TRANSFORM_ISSUES,
+} from './constants';
 
 /**
  * Login, this action starts the request saga
@@ -44,5 +49,18 @@ export function getIssuesErrorAction(error) {
   return {
     type: GET_ISSUES_ERROR,
     error,
+  };
+}
+
+/**
+ * Transform issues
+ * @param  {array} transformIssues The transform issues
+ *
+ * @return {object} An action object with a type of GET_TRANSFORM_ISSUES
+ */
+export function getTransformIssuesAction(transformIssues) {
+  return {
+    type: GET_TRANSFORM_ISSUES,
+    transformIssues,
   };
 }

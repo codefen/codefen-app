@@ -11,8 +11,23 @@ import PageHeaderImage from './PageHeaderImage';
 import PageHeaderTypography from './PageHeaderTypography';
 import PageHeaderAction from './PageHeaderAction';
 import PageHeaderIcon from './PageHeaderIcon';
+import { Table } from 'antd';
+import { issuesColumns } from './PageTableColumns';
+import {
+  makeSelectTransformIssues,
+  makeSelectIsLoading,
+} from 'containers/IssuesPage/selectors';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
+
+const stateSelector = createStructuredSelector({
+  transformIssues: makeSelectTransformIssues(),
+  isLoading: makeSelectIsLoading(),
+});
 
 export default function Page() {
+  const { transformIssues, isLoading } = useSelector(stateSelector);
+
   return (
     <>
       <PageHeader>
@@ -22,6 +37,10 @@ export default function Page() {
           <PageHeaderIcon type="plus-circle" theme="filled" />
         </PageHeaderAction>
       </PageHeader>
+
+      {!isLoading && (
+        <Table columns={issuesColumns} dataSource={transformIssues} />
+      )}
     </>
   );
 }

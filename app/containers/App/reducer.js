@@ -7,10 +7,11 @@
 import produce from 'immer';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
 import { GET_ISSUES_SUCCESS } from 'containers/IssuesPage/constants';
-import { TOGGLE_SIDEBAR } from './constants';
+import { TOGGLE_SIDEBAR, TOGGLE_DRAWER } from './constants';
 
 export const initialState = {
   isCollapsed: false,
+  isDrawer: false,
   session: '',
   user: {
     id: '',
@@ -58,6 +59,9 @@ const appReducer = produce((draft, action) => {
       break;
     case TOGGLE_SIDEBAR:
       draft.isCollapsed = !draft.isCollapsed;
+      break;
+    case TOGGLE_DRAWER:
+      draft.isDrawer = !draft.isDrawer;
       break;
   }
 }, initialState);

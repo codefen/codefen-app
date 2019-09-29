@@ -15,6 +15,8 @@ import LayoutWrapper from './LayoutWrapper';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIsCollapsed } from 'containers/App/selectors';
 import { useSelector } from 'react-redux';
+import Drawer from '../Drawer';
+import LayoutContainer from './LayoutContainer';
 
 const stateSelector = createStructuredSelector({
   isCollapsed: makeSelectIsCollapsed(),
@@ -25,6 +27,7 @@ export default function LayoutComponent({ children }) {
 
   return (
     <Layout>
+      <Drawer />
       <Sidebar />
       <LayoutWrapper open={isCollapsed}>
         <Header />

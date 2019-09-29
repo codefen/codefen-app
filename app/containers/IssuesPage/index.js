@@ -28,7 +28,6 @@ import messages from './messages';
 import Sidebar from 'components/App/Sidebar';
 import Header from 'components/App/Header';
 
-import background from 'images/background.svg';
 import { getIssuesAction } from './actions';
 
 const stateSelector = createStructuredSelector({

@@ -33,6 +33,12 @@ const makeSelectIsCollapsed = () =>
     appState => appState.isCollapsed,
   );
 
+const makeSelectIsDrawer = () =>
+  createSelector(
+    selectAppDomain,
+    appState => appState.isDrawer,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
@@ -43,6 +49,7 @@ export {
   makeSelectLocation,
   makeSelectSession,
   makeSelectIsCollapsed,
+  makeSelectIsDrawer,
   makeSelectUser,
   makeSelectCompany,
 };

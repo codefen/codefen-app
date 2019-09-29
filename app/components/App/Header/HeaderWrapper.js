@@ -17,6 +17,7 @@ const HeaderWrapper = styled(Header)`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    background: #fff;
   }
 `;
 

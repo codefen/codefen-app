@@ -4,7 +4,7 @@
  *
  */
 
-import { TOGGLE_SIDEBAR } from './constants';
+import { TOGGLE_SIDEBAR, TOGGLE_DRAWER } from './constants';
 
 /**
  * Toggle Sidebar
@@ -14,5 +14,16 @@ import { TOGGLE_SIDEBAR } from './constants';
 export function toggleSidebarAction() {
   return {
     type: TOGGLE_SIDEBAR,
+  };
+}
+
+/**
+ * Toggle Drawer
+ *
+ * @return {object} An action object with a type of TOGGLE_DRAWER
+ */
+export function toggleDrawerAction() {
+  return {
+    type: TOGGLE_DRAWER,
   };
 }

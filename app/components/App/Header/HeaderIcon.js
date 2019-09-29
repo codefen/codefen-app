@@ -1,6 +1,6 @@
 /**
  *
- * Icon
+ * HeaderIcon
  *
  */
 
@@ -9,7 +9,7 @@ import { Icon } from 'antd';
 import { media } from 'utils';
 import { PRIMARY_RED } from 'utils/colors';
 
-const IconWrapper = styled(Icon)`
+const HeaderIcon = styled(Icon)`
   &&& {
     font-size: 19px;
     color: ${PRIMARY_RED};
@@ -21,4 +21,4 @@ const IconWrapper = styled(Icon)`
   }
 `;
 
-export default IconWrapper;
+export default HeaderIcon;

@@ -1,6 +1,6 @@
 /**
  *
- * Tests for Icon
+ * Tests for Page
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -9,12 +9,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Icon from '../index';
+import Page from '../index';
 
-describe('<Icon />', () => {
+describe('<Page />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<Icon />);
+    render(<Page />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -30,7 +30,7 @@ describe('<Icon />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<Icon />);
+    } = render(<Page />);
     expect(firstChild).toMatchSnapshot();
   });
 });

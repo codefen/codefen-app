@@ -11,11 +11,11 @@ import background from 'images/background.svg';
 import { SECONDARY_RED } from 'utils/colors';
 
 const LayoutContainer = styled(Layout)`
-&&& {
-    &.ant-layout {
-          background-image: url('${background}');
-      }
-}
+    &&& {
+        &.ant-layout {
+            background-image: url('${background}');
+        }
+    }
 `;
 
 export default LayoutContainer;

@@ -19,7 +19,7 @@ export default function Footer() {
 
   return (
     <FooterWrapper open={isCollapsed}>
-      Copyright &copy; 2019 | codefen.com
+      Copyright &copy; {new Date().getFullYear()} | codefen.com
     </FooterWrapper>
   );
 }

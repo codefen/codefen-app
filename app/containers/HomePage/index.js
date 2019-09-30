@@ -5,14 +5,20 @@
  *
  */
 
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useInjectSaga } from 'utils/injectSaga';
+import { isLoggedAction } from './actions';
+import saga from './saga';
 
 export default function HomePage() {
-  return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
-  );
+  const dispatch = useDispatch();
+  useInjectSaga({ key: 'homePage', saga });
+  const handleLogged = () => dispatch(isLoggedAction());
+
+  useEffect(() => {
+    handleLogged();
+  }, []);
+
+  return null;
 }

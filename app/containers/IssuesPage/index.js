@@ -7,9 +7,6 @@
 import React, { useEffect } from 'react';
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
-const { Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,6 +24,9 @@ import saga from './saga';
 
 import { getIssuesAction } from './actions';
 import Page from 'components/App/Page';
+
+const { Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 
 const stateSelector = createStructuredSelector({
   issues: makeSelectIssues(),

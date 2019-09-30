@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { PRIMARY_RED } from 'utils/colors';
+import background from 'images/background_black.svg';
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -19,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
@@ -50,6 +50,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     width: 100%;
+    font-family: 'Questrial', sans-serif!important;
   }
 
   html {
@@ -61,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background-color: #fafafa;
+    background-image: url('${background}');
     min-height: 100%;
     min-width: 100%;
   }

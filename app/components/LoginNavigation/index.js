@@ -10,8 +10,8 @@ import Menu from 'components/Menu';
 import MediaQuery from 'react-responsive';
 import { sizes } from 'utils/media';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import NavLink from 'components/NavLink';
+import messages from './messages';
 
 function LoginNavigation() {
   return (

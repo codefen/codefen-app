@@ -25,4 +25,9 @@ export default defineMessages({
     id: `${scope}.researcher`,
     defaultMessage: 'researcher',
   },
+  pageFooter: {
+    id: `${scope}.pageFooter`,
+    defaultMessage:
+      'Welcome to the vulnerability index. This section exclusively shows all peer-reviewed & confirmed vulnerabilities. Please remember to update the status of the issues once solved!',
+  },
 });

@@ -6,8 +6,9 @@
 
 import styled from 'styled-components';
 import { Layout } from 'antd';
-const { Header } = Layout;
 import { PRIMARY_RED } from 'utils/colors';
+import { media } from 'utils';
+const { Header } = Layout;
 
 const FooterWrapper = styled.footer`
   color: rgba(255, 255, 255, 0.65);
@@ -19,8 +20,11 @@ const FooterWrapper = styled.footer`
   left: 0;
   right: 0;
   transition: visibility 0s, opacity 0.5s linear;
-  visibility: ${props => (props.open ? 'hidden' : 'visible')};
-  opacity: ${props => (props.open ? 0 : 1)};
+
+  ${media.tablet`
+    visibility: ${props => (props.open ? 'hidden' : 'visible')};
+    opacity: ${props => (props.open ? 0 : 1)};
+  `}
 `;
 
 export default FooterWrapper;

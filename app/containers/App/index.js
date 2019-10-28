@@ -18,6 +18,8 @@ import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import IssuesPage from 'containers/IssuesPage/Loadable';
 import ResourcesPage from 'containers/ResourcesPage/Loadable';
+import EmailsPage from 'containers/EmailsPage/Loadable';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import Layout from 'components/App/Layout';
@@ -37,6 +39,7 @@ export default function App() {
           <Switch>
             <Route path="/issues" component={IssuesPage} />
             <Route path="/resources" component={ResourcesPage} />
+            <Route path="/emails" component={EmailsPage} />
             <Route render={() => <Redirect to="/404" />} />
           </Switch>
         </Layout>

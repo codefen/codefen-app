@@ -12,7 +12,7 @@ import {
 } from './constants';
 
 /**
- * Login, this action starts the request saga
+ * Get Issues, this action starts the request saga
  *
  * @return {object} An action object with a type of GET_ISSUES
  */

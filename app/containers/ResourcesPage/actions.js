@@ -10,8 +10,9 @@ import {
   GET_RESOURCES_ERROR,
   GET_TRANSFORM_RESOURCES,
 } from './constants';
+
 /**
- * Login, this action starts the request saga
+ * Get Resources, this action starts the request saga
  *
  * @return {object} An action object with a type of GET_RESOURCES
  */

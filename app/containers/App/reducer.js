@@ -5,6 +5,7 @@
  */
 
 import produce from 'immer';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
 import { GET_ISSUES_SUCCESS } from 'containers/IssuesPage/constants';
 import { TOGGLE_SIDEBAR, TOGGLE_DRAWER } from './constants';
@@ -62,6 +63,9 @@ const appReducer = produce((draft, action) => {
       break;
     case TOGGLE_DRAWER:
       draft.isDrawer = !draft.isDrawer;
+      break;
+    case LOCATION_CHANGE:
+      if (draft.isDrawer) draft.isDrawer = !draft.isDrawer;
       break;
   }
 }, initialState);

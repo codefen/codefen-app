@@ -7,7 +7,7 @@
 import styled from 'styled-components';
 import { media } from 'utils';
 import { Menu } from 'antd';
-import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
+import { PRIMARY_RED } from 'utils/colors';
 
 const MenuWrapper = styled(Menu)`
   &&& {
@@ -20,22 +20,37 @@ const MenuWrapper = styled(Menu)`
       margin: 0;
       color: rgba(255, 255, 255, 0.65);
 
+      a {
+        color: rgba(255,255,255,0.65);
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+
+      // > a {
+      //   color: rgba(255,255,255,0.65)
+
+      //   &:hover {
+      //     color: rgba(255,255,255,0.65)
+      //   }
+      // }
+
       &.ant-menu-item-selected {
         background-color: rgba(0, 0, 0, 0.05);
-        // color: ${PRIMARY_RED};
         color: #fff;
         pointer-events: none;
         font-weight: 700;
-  
+
         &:after {
           border-right: 3px solid #fff;
         }
-  
+
         > a {
-          color: ${PRIMARY_RED};
-  
+          color: #fff;
+
           &:hover {
-            color: ${SECONDARY_RED};
+            color: #fff;
           }
         }
     }

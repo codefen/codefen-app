@@ -2,7 +2,7 @@ import React from 'react';
 import request from 'utils/request';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { takeLatest, select, put, call } from 'redux-saga/effects';
+import { takeLatest, select, put, call, fork } from 'redux-saga/effects';
 import { LOGIN } from './constants';
 import { makeSelectEmail, makeSelectPassword } from './selectors';
 import { loginErrorAction, loginSuccessAction } from './actions';
@@ -47,6 +47,10 @@ export function* login() {
   }
 }
 
-export default function* loginPageSaga() {
+export function* loginPage() {
   yield takeLatest(LOGIN, login);
+}
+
+export default function* loginPageSaga() {
+  yield fork(loginPage);
 }

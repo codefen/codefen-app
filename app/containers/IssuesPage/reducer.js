@@ -47,6 +47,7 @@ const issuesPageReducer = produce((draft, action) => {
       draft.isLoading = true;
       break;
     case GET_ISSUES_SUCCESS:
+      draft.isLoading = false;
       draft.issues = action.issues;
       break;
     case GET_ISSUES_ERROR:

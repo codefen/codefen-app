@@ -26,9 +26,8 @@ export function* resources() {
 
     yield put(getResourcesSuccessAction(response.company, response.resources));
 
-    let index = 1;
     const transformResources = response.resources.map(({ ...resource }) => ({
-      key: index++,
+      key: resource.id,
       main_server: resource.main_server,
       domain: resource.address_domain,
       reference: resource.server_area,

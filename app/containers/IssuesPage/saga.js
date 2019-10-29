@@ -26,9 +26,8 @@ export function* issues() {
 
     yield put(getIssuesSuccessAction(response.company, response.issues));
 
-    let index = 1;
     const transformIssues = response.issues.map(({ ...issue }) => ({
-      key: index++,
+      key: issue.id,
       relevance: parseInt(issue.risk_level, 10),
       issue: issue.name,
       status: issue.solved,

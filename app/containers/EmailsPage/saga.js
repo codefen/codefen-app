@@ -25,6 +25,14 @@ export function* emails() {
       return yield put(getEmailsErrorAction('error'));
 
     yield put(getEmailsSuccessAction(response.company, response.emails));
+
+    const transformEmails = response.emails.map(({ ...email }) => ({
+      key: email.id,
+      email_adresses: email.email,
+      reference: email.info,
+    }));
+
+    yield put(getTransformEmailsAction(transformEmails));
   } catch (error) {
     // yield put(loginErrorAction(error));
     console.log(error);

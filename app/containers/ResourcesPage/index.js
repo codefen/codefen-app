@@ -5,7 +5,6 @@
  */
 
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,6 +33,7 @@ export const resourcesColumns = [
     title: <Icon type="global" />,
     dataIndex: 'global_icon',
     key: 'global_icon',
+    render: () => <Icon type="global" />,
   },
   {
     title: <FormattedMessage {...messages.main_server} />,

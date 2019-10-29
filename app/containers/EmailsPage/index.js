@@ -9,17 +9,46 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
+import { Icon } from 'antd';
+import issueImage from 'images/header_issue.svg';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectEmailsPage from './selectors';
+import {
+  PageHeader,
+  PageHeaderImage,
+  PageHeaderTypography,
+  PageHeaderAction,
+  PageHeaderIcon,
+} from 'components/App/Page';
+import TableWrapper from 'components/App/Table';
+import { makeSelectIsLoading, makeSelectTransformEmails } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { getEmailsAction } from './actions';
 
+export const emailsColumns = [
+  {
+    title: <Icon type="mail" />,
+    dataIndex: 'mail_icon',
+    key: 'mail_icon',
+    render: () => <Icon type="mail" />,
+  },
+  {
+    title: <FormattedMessage {...messages.email_adresses} />,
+    dataIndex: 'email_adresses',
+    key: 'email_adresses',
+  },
+  {
+    title: <FormattedMessage {...messages.reference} />,
+    dataIndex: 'reference',
+    key: 'reference',
+  },
+];
+
 const stateSelector = createStructuredSelector({
-  emailsPage: makeSelectEmailsPage(),
+  isLoading: makeSelectIsLoading(),
+  transformEmails: makeSelectTransformEmails(),
 });
 
 export default function EmailsPage() {
@@ -28,22 +57,31 @@ export default function EmailsPage() {
 
   const dispatch = useDispatch();
   const handleEmails = () => dispatch(getEmailsAction());
+  const { isLoading, transformEmails } = useSelector(stateSelector);
 
   useEffect(() => {
     handleEmails();
   }, []);
 
-  /* eslint-disable no-unused-vars */
-  const { emailsPage } = useSelector(stateSelector);
-  /* eslint-enable no-unused-vars */
-
   return (
-    <div>
+    <>
       <Helmet>
-        <title>EmailsPage</title>
-        <meta name="description" content="Description of EmailsPage" />
+        <title>email adresses - codefen.com</title>
+        <meta name="description" content="Description of Email adresses" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
-    </div>
+
+      <PageHeader>
+        <PageHeaderImage src={issueImage} />
+        <PageHeaderTypography>email adresses</PageHeaderTypography>
+        <PageHeaderAction>
+          <PageHeaderIcon type="plus-circle" theme="filled" />
+        </PageHeaderAction>
+      </PageHeader>
+
+      <TableWrapper
+        columns={emailsColumns}
+        dataSource={!isLoading ? transformEmails : null}
+      />
+    </>
   );
 }

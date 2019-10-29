@@ -15,11 +15,33 @@ const selectEmailsPageDomain = state => state.emailsPage || initialState;
  * Default selector used by EmailsPage
  */
 
-const makeSelectEmailsPage = () =>
+const makeSelectEmails = () =>
   createSelector(
     selectEmailsPageDomain,
-    substate => substate,
+    emailsPageState => emailsPageState.emails,
   );
 
-export default makeSelectEmailsPage;
-export { selectEmailsPageDomain };
+const makeSelectTransformEmails = () =>
+  createSelector(
+    selectEmailsPageDomain,
+    emailsPageState => emailsPageState.transformEmails,
+  );
+
+const makeSelectIsLoading = () =>
+  createSelector(
+    selectEmailsPageDomain,
+    emailsPageState => emailsPageState.isLoading,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectEmailsPageDomain,
+    emailsPageState => emailsPageState.error,
+  );
+
+export {
+  makeSelectEmails,
+  makeSelectTransformEmails,
+  makeSelectIsLoading,
+  makeSelectError,
+};

@@ -15,12 +15,6 @@ const selectResourcesPageDomain = state => state.resourcesPage || initialState;
  * Default selector used by ResourcesPage
  */
 
-const makeSelectResourcesPage = () =>
-  createSelector(
-    selectResourcesPageDomain,
-    substate => substate,
-  );
-
 const makeSelectResources = () =>
   createSelector(
     selectResourcesPageDomain,
@@ -45,7 +39,6 @@ const makeSelectError = () =>
     resourcesPageState => resourcesPageState.error,
   );
 
-export default makeSelectResourcesPage;
 export {
   makeSelectResources,
   makeSelectTransformResources,

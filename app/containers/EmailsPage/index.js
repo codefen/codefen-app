@@ -4,8 +4,7 @@
  *
  */
 
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,18 +16,25 @@ import makeSelectEmailsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import { getEmailsAction } from './actions';
 
 const stateSelector = createStructuredSelector({
   emailsPage: makeSelectEmailsPage(),
 });
 
-function EmailsPage() {
+export default function EmailsPage() {
   useInjectReducer({ key: 'emailsPage', reducer });
   useInjectSaga({ key: 'emailsPage', saga });
 
+  const dispatch = useDispatch();
+  const handleEmails = () => dispatch(getEmailsAction());
+
+  useEffect(() => {
+    handleEmails();
+  }, []);
+
   /* eslint-disable no-unused-vars */
   const { emailsPage } = useSelector(stateSelector);
-  const dispatch = useDispatch();
   /* eslint-enable no-unused-vars */
 
   return (
@@ -41,7 +47,3 @@ function EmailsPage() {
     </div>
   );
 }
-
-EmailsPage.propTypes = {};
-
-export default EmailsPage;

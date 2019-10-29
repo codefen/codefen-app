@@ -8,9 +8,10 @@ import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
 import { GET_ISSUES_SUCCESS } from 'containers/IssuesPage/constants';
-import { TOGGLE_SIDEBAR, TOGGLE_DRAWER } from './constants';
+import { TOGGLE_SIDEBAR, TOGGLE_DRAWER, LOGOUT } from './constants';
 
 export const initialState = {
+  isLogged: false,
   isCollapsed: false,
   isDrawer: false,
   session: '',
@@ -51,9 +52,18 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 const appReducer = produce((draft, action) => {
   switch (action.type) {
+    case LOGOUT:
+      draft.isLogged = false;
+      draft.isCollapsed = false;
+      draft.isDrawer = false;
+      draft.company = initialState.company;
+      draft.user = initialState.user;
+      draft.session = initialState.session;
+      break;
     case LOGIN_SUCCESS:
       draft.session = action.session;
       draft.user = action.user;
+      draft.isLogged = true;
       break;
     case GET_ISSUES_SUCCESS:
       draft.company = action.company;

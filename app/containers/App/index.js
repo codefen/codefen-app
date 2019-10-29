@@ -12,7 +12,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Import Utils
 import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
 import reducer from 'containers/App/reducer';
+import saga from 'containers/App/saga';
 
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -29,6 +31,7 @@ import GlobalStyle from '../../global-styles';
 
 export default function App() {
   useInjectReducer({ key: 'app', reducer });
+  useInjectSaga({ key: 'app', saga });
 
   return (
     <div>
@@ -39,7 +42,7 @@ export default function App() {
           <Switch>
             <Route path="/issues" component={IssuesPage} />
             <Route path="/resources" component={ResourcesPage} />
-            <Route path="/emails" component={EmailsPage} />
+            <Route path="/email-addresses" component={EmailsPage} />
             <Route render={() => <Redirect to="/404" />} />
           </Switch>
         </Layout>

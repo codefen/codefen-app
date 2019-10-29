@@ -32,7 +32,20 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 const emailsPageReducer = produce((draft, action) => {
   switch (action.type) {
-    case DEFAULT_ACTION:
+    case GET_EMAILS:
+      draft.isLoading = true;
+      break;
+    case GET_EMAILS_SUCCESS:
+      draft.isLoading = false;
+      draft.emails = action.emails;
+      break;
+    case GET_EMAILS_ERROR:
+      draft.isLoading = false;
+      draft.error = action.error;
+      break;
+    case GET_TRANSFORM_EMAILS:
+      draft.isLoading = false;
+      draft.transformEmails = action.transformEmails;
       break;
   }
 }, initialState);

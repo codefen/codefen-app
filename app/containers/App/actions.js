@@ -4,7 +4,7 @@
  *
  */
 
-import { TOGGLE_SIDEBAR, TOGGLE_DRAWER } from './constants';
+import { TOGGLE_SIDEBAR, TOGGLE_DRAWER, LOGOUT } from './constants';
 
 /**
  * Toggle Sidebar
@@ -25,5 +25,16 @@ export function toggleSidebarAction() {
 export function toggleDrawerAction() {
   return {
     type: TOGGLE_DRAWER,
+  };
+}
+
+/**
+ * Logout, maybe this action will starts the request saga?
+ *
+ * @return {object} An action object with a type of LOGOUT
+ */
+export function logoutAction() {
+  return {
+    type: LOGOUT,
   };
 }

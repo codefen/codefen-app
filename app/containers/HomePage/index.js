@@ -14,6 +14,7 @@ import saga from './saga';
 export default function HomePage() {
   const dispatch = useDispatch();
   useInjectSaga({ key: 'homePage', saga });
+
   const handleLogged = () => dispatch(isLoggedAction());
 
   useEffect(() => {

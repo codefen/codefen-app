@@ -5,18 +5,18 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-
-// import Menu from 'components/Menu';
-import { Layout, Breadcrumb } from 'antd';
+import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
 import Menu from 'components/App/Menu';
 import Icon from './NavigationIcon';
+import { logoutAction } from '../../../containers/App/actions';
 
 export default function Navigation() {
+  const dispatch = useDispatch();
+  const handleLogout = () => dispatch(logoutAction());
+
   return (
     <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
       <Menu.Item key="1">
@@ -40,7 +40,7 @@ export default function Navigation() {
         </NavLinkWrapper>
       </Menu.Item>
 
-      <Menu.Item key="4">
+      <Menu.Item key="4" onClick={handleLogout}>
         <Icon type="logout" />
         <FormattedMessage {...messages.disconnect} />
       </Menu.Item>

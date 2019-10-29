@@ -27,7 +27,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title>Login - codefen.com</title>
+        <title>login - codefen.com</title>
         <meta name="description" content="Login - codefen.com" />
       </Helmet>
 

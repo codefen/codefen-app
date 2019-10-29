@@ -20,10 +20,11 @@ const stateSelector = createStructuredSelector({
 });
 
 export default function Navigation() {
-  const dispatch = useDispatch();
   const {
     location: { pathname },
   } = useSelector(stateSelector);
+
+  const dispatch = useDispatch();
   const handleLogout = () => dispatch(logoutAction());
   const handleSelected = () => {
     const selectedKeys = [];

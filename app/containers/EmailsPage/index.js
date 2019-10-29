@@ -55,9 +55,9 @@ export default function EmailsPage() {
   useInjectReducer({ key: 'emailsPage', reducer });
   useInjectSaga({ key: 'emailsPage', saga });
 
+  const { isLoading, transformEmails } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleEmails = () => dispatch(getEmailsAction());
-  const { isLoading, transformEmails } = useSelector(stateSelector);
 
   useEffect(() => {
     handleEmails();

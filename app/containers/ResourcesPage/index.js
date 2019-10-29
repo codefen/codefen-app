@@ -77,7 +77,7 @@ export default function ResourcesPage() {
   return (
     <>
       <Helmet>
-        <title>Resources - codefen.com</title>
+        <title>resources - codefen.com</title>
         <meta name="description" content="Description of Resources" />
       </Helmet>
 

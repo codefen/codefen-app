@@ -6,25 +6,11 @@
 
 import React, { useEffect } from 'react';
 
-import { Layout, Menu } from 'antd';
 import Progress from 'components/App/Progress';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import messages from './messages';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import {
-  makeSelectIssues,
-  makeSelectIsLoading,
-  makeSelectError,
-  makeSelectTransformIssues,
-} from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import issueImage from 'images/header_issue.svg';
-import { getIssuesAction } from './actions';
 import {
   PageHeader,
   PageHeaderImage,
@@ -34,6 +20,18 @@ import {
   PageFooter,
   ResearcherWrapper,
 } from 'components/App/Page';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import issueImage from 'images/header_issue.svg';
+import messages from './messages';
+import {
+  makeSelectIsLoading,
+  makeSelectError,
+  makeSelectTransformIssues,
+} from './selectors';
+import reducer from './reducer';
+import saga from './saga';
+import { getIssuesAction } from './actions';
 import TableWrapper from '../../components/App/Table';
 
 export const issuesColumns = [
@@ -82,8 +80,8 @@ export default function IssuesPage() {
   return (
     <>
       <Helmet>
-        <title>Issues - codefen.com</title>
-        <meta name="description" content="Description of IssuesPage" />
+        <title>issues - codefen.com</title>
+        <meta name="description" content="Description of Issues" />
       </Helmet>
 
       <PageHeader>

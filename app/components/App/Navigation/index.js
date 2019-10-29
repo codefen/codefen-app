@@ -5,20 +5,42 @@
  */
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import Menu from 'components/App/Menu';
+import { logoutAction } from 'containers/App/actions';
+import { makeSelectLocation } from 'containers/App/selectors';
+import { createStructuredSelector } from 'reselect';
 import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
-import Menu from 'components/App/Menu';
 import Icon from './NavigationIcon';
-import { logoutAction } from '../../../containers/App/actions';
+
+const stateSelector = createStructuredSelector({
+  location: makeSelectLocation(),
+});
 
 export default function Navigation() {
   const dispatch = useDispatch();
+  const {
+    location: { pathname },
+  } = useSelector(stateSelector);
   const handleLogout = () => dispatch(logoutAction());
+  const handleSelected = () => {
+    const selectedKeys = [];
+
+    if (pathname === '/issues') selectedKeys.push('1');
+    if (pathname === '/resources') selectedKeys.push('2');
+    if (pathname === '/email-addresses') selectedKeys.push('3');
+
+    return selectedKeys;
+  };
 
   return (
-    <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
+    <Menu
+      theme="light"
+      selectedKeys={handleSelected && handleSelected()}
+      mode="inline"
+    >
       <Menu.Item key="1">
         <NavLinkWrapper to="/issues">
           <Icon type="user" />

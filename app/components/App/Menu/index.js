@@ -23,9 +23,9 @@ const MenuWrapper = styled(Menu)`
       a {
         color: rgba(255,255,255,0.65);
 
-        &:hover {
-          font-weight: bold;
-        }
+        // &:hover {
+        //   font-weight: bold;
+        // }
       }
 
       // > a {

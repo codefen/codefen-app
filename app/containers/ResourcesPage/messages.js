@@ -9,8 +9,16 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.containers.ResourcesPage';
 
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the ResourcesPage container!',
+  main_server: {
+    id: `${scope}.main_server`,
+    defaultMessage: 'main server',
+  },
+  domain: {
+    id: `${scope}.domain`,
+    defaultMessage: 'domain',
+  },
+  reference: {
+    id: `${scope}.reference`,
+    defaultMessage: 'reference',
   },
 });

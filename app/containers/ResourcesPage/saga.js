@@ -26,7 +26,15 @@ export function* resources() {
 
     yield put(getResourcesSuccessAction(response.company, response.resources));
 
-    //TODO: getTransformResourcesAction
+    let index = 1;
+    const transformResources = response.resources.map(({ ...resource }) => ({
+      key: index++,
+      main_server: resource.main_server,
+      domain: resource.address_domain,
+      reference: resource.server_area,
+    }));
+
+    yield put(getTransformResourcesAction(transformResources));
   } catch (error) {
     // yield put(loginErrorAction(error));
     console.log(error);

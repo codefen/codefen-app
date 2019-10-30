@@ -62,12 +62,7 @@ export const issuesColumns = [
   },
 ];
 
-export const arrayProps = [
-  'test',
-  <FormattedMessage {...messages.issue} />,
-  <FormattedMessage {...messages.status} />,
-  <FormattedMessage {...messages.researcher} />,
-];
+export const arrayProps = ['test', 'test2'];
 
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
@@ -103,7 +98,7 @@ export default function IssuesPage() {
       </PageHeader>
 
       <TableWrapper
-        nameOfColumns={arrayProps}
+        issues={arrayProps}
         columns={issuesColumns}
         dataSource={!isLoading ? transformIssues : null}
       />

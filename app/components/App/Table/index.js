@@ -13,45 +13,51 @@ const TableWrapper = styled(Table)`
     @media only screen and (max-width: 480px) {
       table {
         border: 0;
-      }
 
-      table caption {
-        font-size: 1.3em;
-      }
+        caption {
+          font-size: 1.3em;
+        }
 
-      table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-      }
+        thead {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
 
-      table tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: 0.625em;
-      }
+        tr {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+        }
 
-      table td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: 0.8em;
-        text-align: right;
-      }
+        td {
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.8em;
+          text-align: right;
 
-      table td::before {
-        content: ${props => `'${props.nameOfColumns[0]}'`};
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
+          &::before {
+            float: left;
+            font-weight: bold;
+            text-transform: lowercase;
+          }
 
-      table td:last-child {
-        border-bottom: 0;
+          &:nth-child(2) {
+            &::before {
+              content: ${props =>
+                props.nameOfColumns && `'${props.nameOfColumns[0]}'`};
+            }
+          }
+
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
       }
     }
 

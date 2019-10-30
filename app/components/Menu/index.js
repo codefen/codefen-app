@@ -24,6 +24,9 @@ const MenuWrapper = styled(Menu)`
       }
 
       > a {
+        display: block;
+        text-align: center;
+
         &:hover {
           color: ${SECONDARY_RED};
         }
@@ -64,6 +67,15 @@ const MenuWrapper = styled(Menu)`
         text-align: center;
       }
     }
+
+    ${media.tablet`
+      .ant-menu-item {
+        > a {
+          display: block;
+          text-align: left;
+        }
+      }
+    `}
   }
 `;
 

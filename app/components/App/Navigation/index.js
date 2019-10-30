@@ -11,6 +11,7 @@ import Menu from 'components/App/Menu';
 import { logoutAction } from 'containers/App/actions';
 import { makeSelectLocation } from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
+import { ISSUES, RESOURCES, EMAIL_ADRESSES } from 'routes';
 import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
 import Icon from './NavigationIcon';
@@ -29,9 +30,9 @@ export default function Navigation() {
   const handleSelected = () => {
     const selectedKeys = [];
 
-    if (pathname === '/issues') selectedKeys.push('1');
-    if (pathname === '/resources') selectedKeys.push('2');
-    if (pathname === '/email-addresses') selectedKeys.push('3');
+    if (pathname === ISSUES) selectedKeys.push('1');
+    if (pathname === RESOURCES) selectedKeys.push('2');
+    if (pathname === EMAIL_ADRESSES) selectedKeys.push('3');
 
     return selectedKeys;
   };
@@ -43,22 +44,22 @@ export default function Navigation() {
       mode="inline"
     >
       <Menu.Item key="1">
-        <NavLinkWrapper to="/issues">
+        <NavLinkWrapper to={ISSUES}>
           <Icon type="user" />
           <FormattedMessage {...messages.foundIssues} />
         </NavLinkWrapper>
       </Menu.Item>
 
       <Menu.Item key="2">
-        <NavLinkWrapper to="/resources">
-          <Icon type="video-camera" />
+        <NavLinkWrapper to={RESOURCES}>
+          <Icon type="global" />
           <FormattedMessage {...messages.resources} />
         </NavLinkWrapper>
       </Menu.Item>
 
       <Menu.Item key="3">
-        <NavLinkWrapper to="/email-addresses">
-          <Icon type="upload" />
+        <NavLinkWrapper to={EMAIL_ADRESSES}>
+          <Icon type="mail" />
           <FormattedMessage {...messages.emailAddresses} />
         </NavLinkWrapper>
       </Menu.Item>

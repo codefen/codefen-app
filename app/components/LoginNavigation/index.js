@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import NavLink from 'components/NavLink';
 import messages from './messages';
 
-function LoginNavigation() {
+export default function LoginNavigation() {
   return (
     <MediaQuery minWidth={sizes.tablet}>
       {matches => (
@@ -37,7 +37,3 @@ function LoginNavigation() {
     </MediaQuery>
   );
 }
-
-LoginNavigation.propTypes = {};
-
-export default LoginNavigation;

@@ -15,13 +15,19 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import reducer from 'containers/App/reducer';
 import saga from 'containers/App/saga';
-
+import {
+  HOME,
+  LOGIN,
+  ISSUES,
+  RESOURCES,
+  EMAIL_ADRESSES,
+  NOT_FOUND,
+} from 'routes';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import IssuesPage from 'containers/IssuesPage/Loadable';
 import ResourcesPage from 'containers/ResourcesPage/Loadable';
 import EmailsPage from 'containers/EmailsPage/Loadable';
-
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import Layout from 'components/App/Layout';
@@ -36,14 +42,14 @@ export default function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
+        <Route exact path={HOME} component={HomePage} />
+        <Route path={LOGIN} component={LoginPage} />
         <Layout>
           <Switch>
-            <Route path="/issues" component={IssuesPage} />
-            <Route path="/resources" component={ResourcesPage} />
-            <Route path="/email-addresses" component={EmailsPage} />
-            <Route render={() => <Redirect to="/404" />} />
+            <Route path={ISSUES} component={IssuesPage} />
+            <Route path={RESOURCES} component={ResourcesPage} />
+            <Route path={EMAIL_ADRESSES} component={EmailsPage} />
+            <Route render={() => <Redirect to={NOT_FOUND} />} />
           </Switch>
         </Layout>
 

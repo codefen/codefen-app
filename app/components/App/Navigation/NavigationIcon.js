@@ -12,6 +12,7 @@ import { PRIMARY_RED } from 'utils/colors';
 const NavigationIcon = styled(Icon)`
   &&& {
     font-size: 17px;
+    margin-right: ${props => props.custom && '3.5px'};
   }
 `;
 

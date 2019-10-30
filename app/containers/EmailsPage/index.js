@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Icon } from 'antd';
+import IconWrapper from 'components/Icon';
 import issueImage from 'images/header_issue.svg';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -29,10 +29,10 @@ import { getEmailsAction } from './actions';
 
 export const emailsColumns = [
   {
-    title: <Icon type="mail" />,
+    title: <IconWrapper type="mail" />,
     dataIndex: 'mail_icon',
     key: 'mail_icon',
-    render: () => <Icon type="mail" />,
+    render: () => <IconWrapper type="mail" />,
   },
   {
     title: <FormattedMessage {...messages.email_adresses} />,

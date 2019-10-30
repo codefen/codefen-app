@@ -12,9 +12,11 @@ import { logoutAction } from 'containers/App/actions';
 import { makeSelectLocation } from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
 import { ISSUES, RESOURCES, EMAIL_ADRESSES } from 'routes';
+import issueImage from 'images/icon_issue.svg';
 import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
 import Icon from './NavigationIcon';
+import NavigationCustomIcon from './NavigationCustomIcon';
 
 const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),
@@ -45,7 +47,10 @@ export default function Navigation() {
     >
       <Menu.Item key="1">
         <NavLinkWrapper to={ISSUES}>
-          <Icon type="user" />
+          <Icon
+            custom="true"
+            component={() => <NavigationCustomIcon src={issueImage} />}
+          />
           <FormattedMessage {...messages.foundIssues} />
         </NavLinkWrapper>
       </Menu.Item>

@@ -1,13 +1,13 @@
-import { GET_ISSUES } from './constants';
+import request from 'utils/request';
+import { API_BASE_URL, API_COMPANY_ISSUES } from 'utils/api';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
+import { GET_ISSUES } from './constants';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
 import {
   getIssuesErrorAction,
   getIssuesSuccessAction,
   getTransformIssuesAction,
 } from './actions';
-import { API_BASE_URL, API_COMPANY_ISSUES } from 'utils/api';
-import request from 'utils/request';
 
 export function* issues() {
   const session = yield select(makeSelectSession());

@@ -33,7 +33,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Layout from 'components/App/Layout';
 
 import 'antd/dist/antd.css';
-import GlobalStyle from '../../global-styles';
+import GlobalStyle from 'global-styles';
 
 export default function App() {
   useInjectReducer({ key: 'app', reducer });

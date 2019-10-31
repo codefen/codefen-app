@@ -7,15 +7,11 @@
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { isLoggedAction } from './actions';
-import saga from './saga';
+import { checkUserLoggedAction } from 'containers/App/actions';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  useInjectSaga({ key: 'homePage', saga });
-
-  const handleLogged = () => dispatch(isLoggedAction());
+  const handleLogged = () => dispatch(checkUserLoggedAction());
 
   useEffect(() => {
     handleLogged();

@@ -5,6 +5,7 @@
  */
 
 import produce from 'immer';
+import { LOGOUT } from 'containers/App/constants';
 import {
   GET_EMAILS,
   GET_EMAILS_SUCCESS,
@@ -46,6 +47,12 @@ const emailsPageReducer = produce((draft, action) => {
     case GET_TRANSFORM_EMAILS:
       draft.isLoading = false;
       draft.transformEmails = action.transformEmails;
+      break;
+    case LOGOUT:
+      draft.transformEmails = initialState.transformEmails;
+      draft.emails = initialState.emails;
+      draft.error = initialState.error;
+      draft.isLoading = initialState.isLoading;
       break;
   }
 }, initialState);

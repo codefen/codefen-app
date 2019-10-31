@@ -32,7 +32,7 @@ export const emailsColumns = [
     title: <IconWrapper type="mail" />,
     dataIndex: 'mail_icon',
     key: 'mail_icon',
-    render: () => <IconWrapper type="mail" />,
+    render: () => <IconWrapper type="mail" style={{ display: 'flex' }} />,
   },
   {
     title: <FormattedMessage {...messages.email_adresses} />,
@@ -60,8 +60,8 @@ export default function EmailsPage() {
   const handleEmails = () => dispatch(getEmailsAction());
 
   useEffect(() => {
-    handleEmails();
-  }, []);
+    if (!transformEmails.length) handleEmails();
+  }, [transformEmails]);
 
   return (
     <>
@@ -79,6 +79,7 @@ export default function EmailsPage() {
       </PageHeader>
 
       <TableWrapper
+        emails={emailsColumns}
         columns={emailsColumns}
         dataSource={!isLoading ? transformEmails : null}
       />

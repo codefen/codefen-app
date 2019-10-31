@@ -18,8 +18,8 @@ const ReferenceWrapper = styled.span`
   }
 
   ${media.tablet`
-  justify-content: auto;
-`}
+    justify-content: end;
+  `}
 `;
 
 export default ReferenceWrapper;

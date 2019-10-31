@@ -4,7 +4,23 @@
  *
  */
 
-import { TOGGLE_SIDEBAR, TOGGLE_DRAWER, LOGOUT } from './constants';
+import {
+  TOGGLE_SIDEBAR,
+  TOGGLE_DRAWER,
+  LOGOUT,
+  CHECK_USER_LOGGED,
+} from './constants';
+
+/**
+ * Check USer is Logged
+ *
+ * @return {object} An action object with a type of CHECK_USER_LOGGED
+ */
+export function checkUserLoggedAction() {
+  return {
+    type: CHECK_USER_LOGGED,
+  };
+}
 
 /**
  * Toggle Sidebar

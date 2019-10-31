@@ -33,7 +33,7 @@ export const resourcesColumns = [
     title: <Icon type="global" />,
     dataIndex: 'global_icon',
     key: 'global_icon',
-    render: () => <Icon type="global" />,
+    render: () => <Icon type="global" style={{ display: 'flex' }} />,
   },
   {
     title: <FormattedMessage {...messages.main_server} />,
@@ -71,8 +71,8 @@ export default function ResourcesPage() {
   const handleResources = () => dispatch(getResourcesAction());
 
   useEffect(() => {
-    handleResources();
-  }, []);
+    if (!transformResources.length) handleResources();
+  }, [transformResources]);
 
   return (
     <>
@@ -90,6 +90,7 @@ export default function ResourcesPage() {
       </PageHeader>
 
       <TableWrapper
+        resources={resourcesColumns}
         columns={resourcesColumns}
         dataSource={!isLoading ? transformResources : null}
       />

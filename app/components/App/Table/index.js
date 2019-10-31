@@ -45,12 +45,45 @@ const TableWrapper = styled(Table)`
             float: left;
             font-weight: bold;
             text-transform: lowercase;
+            color: ${PRIMARY_RED};
           }
 
           &:nth-child(2) {
             &::before {
               content: ${props =>
-                props.nameOfColumns && `'${props.nameOfColumns[0]}'`};
+                props.issues &&
+                `'${props.issues[1].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.resources &&
+                `'${props.resources[1].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.emails &&
+                `'${props.emails[1].title.props.defaultMessage}'`};
+            }
+          }
+
+          &:nth-child(3) {
+            &::before {
+              content: ${props =>
+                props.issues &&
+                `'${props.issues[2].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.resources &&
+                `'${props.resources[2].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.emails &&
+                `'${props.emails[2].title.props.defaultMessage}'`};
+            }
+          }
+
+          &:nth-child(4) {
+            &::before {
+              content: ${props =>
+                props.issues &&
+                `'${props.issues[3].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.resources &&
+                `'${props.resources[3].title.props.defaultMessage}'`};
             }
           }
 
@@ -68,6 +101,15 @@ const TableWrapper = styled(Table)`
             background: rgba(0, 0, 0, 0.05);
           }
         }
+      }
+
+      .ant-table-header-column {
+        display: flex;
+      }
+
+      .ant-table-column-title {
+        display: flex;
+        align-items: center;
       }
 
       .ant-table-thead {

@@ -33,6 +33,12 @@ const makeSelectIsCollapsed = () =>
     appState => appState.isCollapsed,
   );
 
+const makeSelectIsLogged = () =>
+  createSelector(
+    selectAppDomain,
+    appState => appState.isLogged,
+  );
+
 const makeSelectIsDrawer = () =>
   createSelector(
     selectAppDomain,
@@ -50,6 +56,7 @@ export {
   makeSelectSession,
   makeSelectIsCollapsed,
   makeSelectIsDrawer,
+  makeSelectIsLogged,
   makeSelectUser,
   makeSelectCompany,
 };

@@ -5,6 +5,7 @@
  */
 
 import produce from 'immer';
+import { LOGOUT } from 'containers/App/constants';
 import {
   GET_ISSUES,
   GET_ISSUES_SUCCESS,
@@ -57,6 +58,12 @@ const issuesPageReducer = produce((draft, action) => {
     case GET_TRANSFORM_ISSUES:
       draft.isLoading = false;
       draft.transformIssues = action.transformIssues;
+      break;
+    case LOGOUT:
+      draft.transformIssues = initialState.transformIssues;
+      draft.issue = initialState.issue;
+      draft.error = initialState.error;
+      draft.isLoading = initialState.isLoading;
       break;
   }
 }, initialState);

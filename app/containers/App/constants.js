@@ -4,6 +4,7 @@
  *
  */
 
+export const CHECK_USER_LOGGED = 'codefen/App/CHECK_USER_LOGGED';
 export const TOGGLE_SIDEBAR = 'codefen/App/TOGGLE_SIDEBAR';
 export const TOGGLE_DRAWER = 'codefen/App/TOGGLE_DRAWER';
 

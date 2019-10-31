@@ -5,6 +5,7 @@
  */
 
 import produce from 'immer';
+import { LOGOUT } from 'containers/App/constants';
 import {
   GET_RESOURCES,
   GET_RESOURCES_SUCCESS,
@@ -52,6 +53,12 @@ const resourcesPageReducer = produce((draft, action) => {
     case GET_TRANSFORM_RESOURCES:
       draft.isLoading = false;
       draft.transformResources = action.transformResources;
+      break;
+    case LOGOUT:
+      draft.transformResources = initialState.transformResources;
+      draft.resources = initialState.resources;
+      draft.error = initialState.error;
+      draft.isLoading = initialState.isLoading;
       break;
   }
 }, initialState);

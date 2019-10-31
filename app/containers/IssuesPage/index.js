@@ -44,7 +44,6 @@ export const issuesColumns = [
   {
     title: <FormattedMessage {...messages.issue} />,
     dataIndex: 'issue',
-    dataLabel: <FormattedMessage {...messages.issue} />,
     key: 'issue',
   },
   {
@@ -56,13 +55,9 @@ export const issuesColumns = [
     title: <FormattedMessage {...messages.researcher} />,
     dataIndex: 'researcher',
     key: 'researcher',
-    render: text => (
-      <ResearcherWrapper data-label="label">{text}</ResearcherWrapper>
-    ),
+    render: text => <ResearcherWrapper>{text}</ResearcherWrapper>,
   },
 ];
-
-export const arrayProps = ['test', 'test2'];
 
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
@@ -79,8 +74,8 @@ export default function IssuesPage() {
   const handleIssues = () => dispatch(getIssuesAction());
 
   useEffect(() => {
-    handleIssues();
-  }, []);
+    if (!transformIssues.length) handleIssues();
+  }, [transformIssues]);
 
   return (
     <>
@@ -98,7 +93,7 @@ export default function IssuesPage() {
       </PageHeader>
 
       <TableWrapper
-        issues={arrayProps}
+        issues={issuesColumns}
         columns={issuesColumns}
         dataSource={!isLoading ? transformIssues : null}
       />

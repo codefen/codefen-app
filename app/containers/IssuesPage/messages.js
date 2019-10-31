@@ -30,4 +30,12 @@ export default defineMessages({
     defaultMessage:
       'Welcome to the vulnerability index. This section exclusively shows all peer-reviewed & confirmed vulnerabilities. Please remember to update the status of the issues once solved!',
   },
+  header: {
+    id: `${scope}.header`,
+    defaultMessage: 'issues - codefen.com',
+  },
+  vulnerabilitiesAndIsues: {
+    id: `${scope}.vulnerabilitiesAndIsues`,
+    defaultMessage: 'vulnerabilities and issues',
+  },
 });

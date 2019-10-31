@@ -21,4 +21,12 @@ export default defineMessages({
     id: `${scope}.reference`,
     defaultMessage: 'reference',
   },
+  header: {
+    id: `${scope}.header`,
+    defaultMessage: 'resources - codefen.com',
+  },
+  scopeAndResources: {
+    id: `${scope}.scopeAndResources`,
+    defaultMessage: 'scope & resources',
+  },
 });

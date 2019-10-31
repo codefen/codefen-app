@@ -78,14 +78,15 @@ export default function ResourcesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>resources - codefen.com</title>
-        <meta name="description" content="Description of Resources" />
-      </Helmet>
+      <FormattedMessage {...messages.header}>
+        {header => <Helmet title={header} />}
+      </FormattedMessage>
 
       <PageHeader>
         <PageHeaderImage src={issueImage} />
-        <PageHeaderTypography>scope & resources</PageHeaderTypography>
+        <PageHeaderTypography>
+          <FormattedMessage {...messages.scopeAndResources} />
+        </PageHeaderTypography>
         <PageHeaderAction>
           <PageHeaderIcon type="plus-circle" theme="filled" />
         </PageHeaderAction>

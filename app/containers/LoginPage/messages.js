@@ -25,4 +25,8 @@ export default defineMessages({
     id: `${scope}.loginError`,
     defaultMessage: 'Invalid email or password.',
   },
+  header: {
+    id: `${scope}.header`,
+    defaultMessage: 'login - codefen.com',
+  },
 });

@@ -17,4 +17,12 @@ export default defineMessages({
     id: `${scope}.reference`,
     defaultMessage: 'reference',
   },
+  header: {
+    id: `${scope}.header`,
+    defaultMessage: 'email adresses - codefen.com',
+  },
+  emailAdresses: {
+    id: `${scope}.emailAdresses`,
+    defaultMessage: 'email adresses',
+  },
 });

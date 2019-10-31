@@ -67,14 +67,15 @@ export default function EmailsPage() {
 
   return (
     <>
-      <Helmet>
-        <title>email adresses - codefen.com</title>
-        <meta name="description" content="Description of Email adresses" />
-      </Helmet>
+      <FormattedMessage {...messages.header}>
+        {header => <Helmet title={header} />}
+      </FormattedMessage>
 
       <PageHeader>
         <PageHeaderImage src={issueImage} />
-        <PageHeaderTypography>email adresses</PageHeaderTypography>
+        <PageHeaderTypography>
+          <FormattedMessage {...messages.emailAdresses} />
+        </PageHeaderTypography>
         <PageHeaderAction>
           <PageHeaderIcon type="plus-circle" theme="filled" />
         </PageHeaderAction>

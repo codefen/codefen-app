@@ -83,14 +83,15 @@ export default function IssuesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>issues - codefen.com</title>
-        <meta name="description" content="Description of Issues" />
-      </Helmet>
+      <FormattedMessage {...messages.header}>
+        {header => <Helmet title={header} />}
+      </FormattedMessage>
 
       <PageHeader>
         <PageHeaderImage src={issueImage} />
-        <PageHeaderTypography>vulnerabilities and issues</PageHeaderTypography>
+        <PageHeaderTypography>
+          <FormattedMessage {...messages.vulnerabilitiesAndIsues} />
+        </PageHeaderTypography>
         <PageHeaderAction>
           <PageHeaderIcon type="plus-circle" theme="filled" />
         </PageHeaderAction>

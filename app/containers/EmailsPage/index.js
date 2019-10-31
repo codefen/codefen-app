@@ -38,11 +38,13 @@ export const emailsColumns = [
     title: <FormattedMessage {...messages.email_adresses} />,
     dataIndex: 'email_adresses',
     key: 'email_adresses',
+    render: text => text || 'undefined',
   },
   {
     title: <FormattedMessage {...messages.reference} />,
     dataIndex: 'reference',
     key: 'reference',
+    render: text => text || 'undefined',
   },
 ];
 

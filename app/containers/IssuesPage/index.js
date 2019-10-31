@@ -45,17 +45,21 @@ export const issuesColumns = [
     title: <FormattedMessage {...messages.issue} />,
     dataIndex: 'issue',
     key: 'issue',
+    render: text => text || 'undefined',
   },
   {
     title: <FormattedMessage {...messages.status} />,
     dataIndex: 'status',
     key: 'status',
+    render: text => text || 'undefined',
   },
   {
     title: <FormattedMessage {...messages.researcher} />,
     dataIndex: 'researcher',
     key: 'researcher',
-    render: text => <ResearcherWrapper>{text}</ResearcherWrapper>,
+    render: text => (
+      <ResearcherWrapper>{text || 'undefined'}</ResearcherWrapper>
+    ),
   },
 ];
 

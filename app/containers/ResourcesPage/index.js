@@ -39,11 +39,13 @@ export const resourcesColumns = [
     title: <FormattedMessage {...messages.main_server} />,
     dataIndex: 'main_server',
     key: 'main_server',
+    render: text => text || 'undefined',
   },
   {
     title: <FormattedMessage {...messages.domain} />,
     dataIndex: 'domain',
     key: 'domain',
+    render: text => text || 'undefined',
   },
   {
     title: <FormattedMessage {...messages.reference} />,
@@ -51,7 +53,7 @@ export const resourcesColumns = [
     key: 'reference',
     render: text => (
       <ReferenceWrapper>
-        <Icon type="home" /> {text}
+        <Icon type="home" /> {text || 'undefined'}
       </ReferenceWrapper>
     ),
   },

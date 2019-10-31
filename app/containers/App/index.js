@@ -29,7 +29,6 @@ import IssuesPage from 'containers/IssuesPage/Loadable';
 import ResourcesPage from 'containers/ResourcesPage/Loadable';
 import EmailsPage from 'containers/EmailsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-
 import Layout from 'components/App/Layout';
 
 import 'antd/dist/antd.css';

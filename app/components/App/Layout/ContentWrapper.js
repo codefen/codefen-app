@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 const ContentWrapper = styled(Content)`
   margin: 0px auto;
-  padding: 24px;
+  padding: 0 24px;
   max-width: 940px;
   width: 100%;
   background: #fff;

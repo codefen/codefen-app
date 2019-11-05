@@ -23,6 +23,8 @@ import {
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import issueImage from 'images/header_issue.svg';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { ISSUES, NOT_FOUND } from 'routes';
 import messages from './messages';
 import {
   makeSelectIsLoading,
@@ -33,35 +35,8 @@ import reducer from './reducer';
 import saga from './saga';
 import { getIssuesAction } from './actions';
 import TableWrapper from '../../components/App/Table';
-
-export const issuesColumns = [
-  {
-    title: <FormattedMessage {...messages.relevance} />,
-    dataIndex: 'relevance',
-    key: 'relevance',
-    render: percent => <Progress percent={percent} showInfo={false} />,
-  },
-  {
-    title: <FormattedMessage {...messages.issue} />,
-    dataIndex: 'issue',
-    key: 'issue',
-    render: text => text || 'undefined',
-  },
-  {
-    title: <FormattedMessage {...messages.status} />,
-    dataIndex: 'status',
-    key: 'status',
-    render: text => text || 'undefined',
-  },
-  {
-    title: <FormattedMessage {...messages.researcher} />,
-    dataIndex: 'researcher',
-    key: 'researcher',
-    render: text => (
-      <ResearcherWrapper>{text || 'undefined'}</ResearcherWrapper>
-    ),
-  },
-];
+import LinkWrapper from '../../components/Link';
+import Detail from '../../components/App/Detail';
 
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
@@ -76,6 +51,36 @@ export default function IssuesPage() {
   const { isLoading, transformIssues } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleIssues = () => dispatch(getIssuesAction());
+  const issuesColumns = [
+    {
+      title: <FormattedMessage {...messages.relevance} />,
+      dataIndex: 'relevance',
+      key: 'relevance',
+      render: percent => <Progress percent={percent} showInfo={false} />,
+    },
+    {
+      title: <FormattedMessage {...messages.issue} />,
+      dataIndex: 'issue',
+      key: 'issue',
+      render: (text, record) => (
+        <LinkWrapper to={`${ISSUES}/${record.key}`}>{text}</LinkWrapper>
+      ),
+    },
+    {
+      title: <FormattedMessage {...messages.status} />,
+      dataIndex: 'status',
+      key: 'status',
+      render: text => text || 'undefined',
+    },
+    {
+      title: <FormattedMessage {...messages.researcher} />,
+      dataIndex: 'researcher',
+      key: 'researcher',
+      render: text => (
+        <ResearcherWrapper>{text || 'undefined'}</ResearcherWrapper>
+      ),
+    },
+  ];
 
   useEffect(() => {
     if (!transformIssues.length) handleIssues();

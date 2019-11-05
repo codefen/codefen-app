@@ -32,9 +32,9 @@ export default function Navigation() {
   const handleSelected = () => {
     const selectedKeys = [];
 
-    if (pathname === ISSUES) selectedKeys.push('1');
-    if (pathname === RESOURCES) selectedKeys.push('2');
-    if (pathname === EMAIL_ADRESSES) selectedKeys.push('3');
+    if (pathname.includes(ISSUES)) selectedKeys.push('1');
+    if (pathname.includes(RESOURCES)) selectedKeys.push('2');
+    if (pathname.includes(EMAIL_ADRESSES)) selectedKeys.push('3');
 
     return selectedKeys;
   };

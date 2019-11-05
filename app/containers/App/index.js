@@ -29,8 +29,8 @@ import IssuesPage from 'containers/IssuesPage/Loadable';
 import ResourcesPage from 'containers/ResourcesPage/Loadable';
 import EmailsPage from 'containers/EmailsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import DetailPage from 'containers/DetailPage/Loadable';
 import Layout from 'components/App/Layout';
-import Detail from 'components/App/Detail';
 
 import 'antd/dist/antd.css';
 import GlobalStyle from 'global-styles';
@@ -47,7 +47,7 @@ export default function App() {
         <Layout>
           <Switch>
             <Route exact path={ISSUES} component={IssuesPage} />
-            <Route path={`${ISSUES}/:issueId`} component={Detail} />
+            <Route path={`${ISSUES}/:issueId`} component={DetailPage} />
 
             <Route exact path={RESOURCES} component={ResourcesPage} />
             <Route exact path={EMAIL_ADRESSES} component={EmailsPage} />

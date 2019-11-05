@@ -35,7 +35,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { getIssuesAction } from './actions';
 import TableWrapper from '../../components/App/Table';
-import LinkWrapper from '../../components/Link';
+import LinkWrapper from '../../components/App/Link';
 import Detail from '../../components/App/Detail';
 
 const stateSelector = createStructuredSelector({
@@ -109,7 +109,7 @@ export default function IssuesPage() {
       />
 
       <PageFooter>
-        <FormattedMessage {...messages.pageFooter} />,
+        <FormattedMessage {...messages.pageFooter} />
       </PageFooter>
     </>
   );

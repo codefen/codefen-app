@@ -51,13 +51,13 @@ const TableWrapper = styled(Table)`
           &:nth-child(2) {
             &::before {
               content: ${props =>
-                props.issues &&
+    props.issues &&
                 `'${props.issues[1].title.props.defaultMessage}'`};
               content: ${props =>
-                props.resources &&
+    props.resources &&
                 `'${props.resources[1].title.props.defaultMessage}'`};
               content: ${props =>
-                props.emails &&
+    props.emails &&
                 `'${props.emails[1].title.props.defaultMessage}'`};
             }
           }
@@ -65,13 +65,13 @@ const TableWrapper = styled(Table)`
           &:nth-child(3) {
             &::before {
               content: ${props =>
-                props.issues &&
+    props.issues &&
                 `'${props.issues[2].title.props.defaultMessage}'`};
               content: ${props =>
-                props.resources &&
+    props.resources &&
                 `'${props.resources[2].title.props.defaultMessage}'`};
               content: ${props =>
-                props.emails &&
+    props.emails &&
                 `'${props.emails[2].title.props.defaultMessage}'`};
             }
           }
@@ -79,10 +79,10 @@ const TableWrapper = styled(Table)`
           &:nth-child(4) {
             &::before {
               content: ${props =>
-                props.issues &&
+    props.issues &&
                 `'${props.issues[3].title.props.defaultMessage}'`};
               content: ${props =>
-                props.resources &&
+    props.resources &&
                 `'${props.resources[3].title.props.defaultMessage}'`};
             }
           }
@@ -132,7 +132,29 @@ const TableWrapper = styled(Table)`
       }
     }
 
+    .ant-pagination-prev {
+      &:hover {
+        border-color: ${PRIMARY_RED};
+      }
+    }
+
     .ant-pagination {
+      .ant-pagination-item,
+      .ant-pagination-prev,
+      .ant-pagination-next {
+        &:hover {
+          border-color: ${PRIMARY_RED};
+          color: ${PRIMARY_RED};
+
+          &:not(.ant-pagination-disabled) {
+            a {
+              color: ${PRIMARY_RED};
+              border-color: ${PRIMARY_RED};
+            }
+          }
+        }
+      }
+
       .ant-pagination-item-link {
         display: flex;
         justify-content: center;

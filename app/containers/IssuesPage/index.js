@@ -5,7 +5,6 @@
  */
 
 import React, { useEffect } from 'react';
-
 import Progress from 'components/App/Progress';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -23,8 +22,7 @@ import {
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import issueImage from 'images/header_issue.svg';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import { ISSUES, NOT_FOUND } from 'routes';
+import { ISSUES } from 'routes';
 import messages from './messages';
 import {
   makeSelectIsLoading,
@@ -36,7 +34,6 @@ import saga from './saga';
 import { getIssuesAction } from './actions';
 import TableWrapper from '../../components/App/Table';
 import LinkWrapper from '../../components/App/Link';
-import Detail from '../../components/App/Detail';
 
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
@@ -51,6 +48,7 @@ export default function IssuesPage() {
   const { isLoading, transformIssues } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleIssues = () => dispatch(getIssuesAction());
+
   const issuesColumns = [
     {
       title: <FormattedMessage {...messages.relevance} />,

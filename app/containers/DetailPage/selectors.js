@@ -15,11 +15,33 @@ const selectDetailPageDomain = state => state.detailPage || initialState;
  * Default selector used by DetailPage
  */
 
-const makeSelectDetailPage = () =>
+const makeSelectIssue = () =>
   createSelector(
     selectDetailPageDomain,
-    substate => substate,
+    detailPageState => detailPageState.issue,
   );
 
-export default makeSelectDetailPage;
-export { selectDetailPageDomain };
+const makeSelectIsLoading = () =>
+  createSelector(
+    selectDetailPageDomain,
+    detailPageState => detailPageState.isLoading,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectDetailPageDomain,
+    detailPageState => detailPageState.error,
+  );
+
+const makeSelectPrepareIssueId = () =>
+  createSelector(
+    selectDetailPageDomain,
+    detailPageState => detailPageState.prepareIssueId,
+  );
+
+export {
+  makeSelectIssue,
+  makeSelectIsLoading,
+  makeSelectError,
+  makeSelectPrepareIssueId,
+};

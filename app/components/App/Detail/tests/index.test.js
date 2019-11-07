@@ -1,6 +1,6 @@
 /**
  *
- * Tests for DetailHeader
+ * Tests for Detail
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,15 +10,15 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
-import DetailHeader from '../index';
+import Detail from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 
-describe('<DetailHeader />', () => {
+describe('<Detail />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <DetailHeader />
+        <Detail />
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -38,7 +38,7 @@ describe('<DetailHeader />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <DetailHeader />
+        <Detail />
       </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { PRIMARY_RED } from 'utils/colors';
+import { PRIMARY_RED, PRIMARY_GREY } from 'utils/colors';
 import background from 'images/background_black.svg';
 
 const GlobalStyle = createGlobalStyle`
@@ -27,7 +27,14 @@ const GlobalStyle = createGlobalStyle`
   p, label, h1, h2, h3, h4, h5 {
     font-family: 'Questrial', sans-serif;
     line-height: 1.5em;
+  }
 
+  hr {
+    border-color: ${PRIMARY_GREY};
+    background-color: ${PRIMARY_GREY};
+    color: ${PRIMARY_GREY};
+    border: 0;
+    height: 1px!important;
   }
 
   input, select {

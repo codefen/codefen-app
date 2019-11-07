@@ -5,14 +5,13 @@
  */
 
 import React from 'react';
-import { Drawer } from 'antd';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIsDrawer } from 'containers/App/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleDrawerAction } from 'containers/App/actions';
 import Navigation from 'components/App/Navigation';
-import DrawerWrapper from './DrawerWrapper';
 import Footer from 'components/App/Footer';
+import DrawerWrapper from './DrawerWrapper';
 import LogoWrapper from './LogoWrapper';
 
 const stateSelector = createStructuredSelector({

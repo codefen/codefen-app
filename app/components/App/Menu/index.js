@@ -5,9 +5,7 @@
  */
 
 import styled from 'styled-components';
-import { media } from 'utils';
 import { Menu } from 'antd';
-import { PRIMARY_RED } from 'utils/colors';
 
 const MenuWrapper = styled(Menu)`
   &&& {

@@ -7,19 +7,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-// Import Components
-import LoginFormContainer from './LoginFormContainer';
-import LoginFormActions from './LoginFormActions';
-import LoginFormError from './LoginFormError';
-import Form from 'components/Form';
-import Input from 'components/Input';
-import Button from 'components/Button';
-import Icon from 'components/Icon';
-import Link from 'components/Link';
-
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 
 import {
   changePasswordAction,
@@ -32,6 +20,18 @@ import {
   makeSelectError,
   makeSelectIsLoading,
 } from 'containers/LoginPage/selectors';
+
+// Import Components
+import Form from 'components/Form';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import Icon from 'components/Icon';
+import Link from 'components/Link';
+import LoginFormContainer from './LoginFormContainer';
+import LoginFormActions from './LoginFormActions';
+import LoginFormError from './LoginFormError';
+
+import messages from './messages';
 
 const stateSelector = createStructuredSelector({
   email: makeSelectEmail(),

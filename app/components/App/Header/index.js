@@ -4,21 +4,16 @@
  *
  */
 
-import React, { useEffect } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import React from 'react';
 import { createStructuredSelector } from 'reselect';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import HeaderWrapper from './HeaderWrapper';
 import { useSelector, useDispatch } from 'react-redux';
-const { Header, Content, Footer, Sider } = Layout;
-import Icon from './HeaderIcon';
-
 import { makeSelectIsCollapsed } from 'containers/App/selectors';
 import {
   toggleSidebarAction,
   toggleDrawerAction,
 } from 'containers/App/actions';
+import Icon from './HeaderIcon';
+import HeaderWrapper from './HeaderWrapper';
 
 const stateSelector = createStructuredSelector({
   isCollapsed: makeSelectIsCollapsed(),

@@ -5,10 +5,7 @@
  */
 
 import styled from 'styled-components';
-import { Layout } from 'antd';
-import { PRIMARY_RED } from 'utils/colors';
 import { media } from 'utils';
-const { Header } = Layout;
 
 const FooterWrapper = styled.footer`
   color: rgba(255, 255, 255, 0.65);

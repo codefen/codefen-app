@@ -7,9 +7,9 @@
 import React from 'react';
 import LogoPng from 'images/logo.png';
 
+import LoginNavigation from 'components/LoginNavigation';
 import LoginAsideContainer from './LoginAsideContainer';
 import LoginLogoWrapper from './LoginLogoWrapper';
-import LoginNavigation from 'components/LoginNavigation';
 import LogoAsideHeader from './LogoAsideHeader';
 
 export default function LoginLogo() {

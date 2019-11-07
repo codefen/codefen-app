@@ -7,13 +7,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import SidebarWrapper from './SidebarWrapper';
-import Navigation from 'components/App/Navigation';
-import LogoWrapper from './LogoWrapper';
-import Footer from 'components/App/Footer';
-
 import { makeSelectIsCollapsed } from 'containers/App/selectors';
+import Navigation from 'components/App/Navigation';
+import Footer from 'components/App/Footer';
+import SidebarWrapper from './SidebarWrapper';
+import LogoWrapper from './LogoWrapper';
 
 const stateSelector = createStructuredSelector({
   isCollapsed: makeSelectIsCollapsed(),

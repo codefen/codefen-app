@@ -5,7 +5,6 @@
  */
 
 import styled from 'styled-components';
-import { media } from 'utils';
 import { Drawer } from 'antd';
 import { PRIMARY_RED, SECONDARY_RED } from 'utils/colors';
 

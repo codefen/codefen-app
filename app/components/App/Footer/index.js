@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
-import FooterWrapper from './FooterWrapper';
 import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIsCollapsed } from 'containers/App/selectors';
+import FooterWrapper from './FooterWrapper';
 
 const stateSelector = createStructuredSelector({
   isCollapsed: makeSelectIsCollapsed(),

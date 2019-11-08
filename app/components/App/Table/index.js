@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /**
  *
  * TableWrapper
@@ -51,13 +52,13 @@ const TableWrapper = styled(Table)`
           &:nth-child(2) {
             &::before {
               content: ${props =>
-    props.issues &&
+                props.issues &&
                 `'${props.issues[1].title.props.defaultMessage}'`};
               content: ${props =>
-    props.resources &&
+                props.resources &&
                 `'${props.resources[1].title.props.defaultMessage}'`};
               content: ${props =>
-    props.emails &&
+                props.emails &&
                 `'${props.emails[1].title.props.defaultMessage}'`};
             }
           }
@@ -65,13 +66,13 @@ const TableWrapper = styled(Table)`
           &:nth-child(3) {
             &::before {
               content: ${props =>
-    props.issues &&
+                props.issues &&
                 `'${props.issues[2].title.props.defaultMessage}'`};
               content: ${props =>
-    props.resources &&
+                props.resources &&
                 `'${props.resources[2].title.props.defaultMessage}'`};
               content: ${props =>
-    props.emails &&
+                props.emails &&
                 `'${props.emails[2].title.props.defaultMessage}'`};
             }
           }
@@ -79,10 +80,10 @@ const TableWrapper = styled(Table)`
           &:nth-child(4) {
             &::before {
               content: ${props =>
-    props.issues &&
+                props.issues &&
                 `'${props.issues[3].title.props.defaultMessage}'`};
               content: ${props =>
-    props.resources &&
+                props.resources &&
                 `'${props.resources[3].title.props.defaultMessage}'`};
             }
           }

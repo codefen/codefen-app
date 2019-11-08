@@ -8,6 +8,7 @@ import {
   getIssuesSuccessAction,
   getTransformIssuesAction,
 } from './actions';
+import { loginErrorAction } from '../LoginPage/actions';
 
 export function* issues() {
   const session = yield select(makeSelectSession());
@@ -15,14 +16,16 @@ export function* issues() {
   const companyId = user.company_id;
   const requestURL = `${API_BASE_URL}${API_COMPANY_ISSUES}&session=${session}&company_id=${companyId}`;
 
-  if (!session || !user || !companyId)
+  if (!session || !user || !companyId) {
     return yield put(getIssuesErrorAction('error'));
+  }
 
   try {
     const response = yield call(request, requestURL);
 
-    if (response.response === 'error')
+    if (response.response === 'error') {
       return yield put(getIssuesErrorAction('error'));
+    }
 
     yield put(getIssuesSuccessAction(response.company, response.issues));
 
@@ -34,10 +37,9 @@ export function* issues() {
       researcher: `@${issue.researcher_username}`,
     }));
 
-    yield put(getTransformIssuesAction(transformIssues));
+    return yield put(getTransformIssuesAction(transformIssues));
   } catch (error) {
-    // yield put(loginErrorAction(error));
-    console.log(error);
+    return yield put(loginErrorAction(error));
   }
 }
 

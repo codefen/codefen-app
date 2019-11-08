@@ -9,9 +9,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-
+import { DEFAULT_LOCALE } from 'i18n';
 import Navigation from '../index';
-import { DEFAULT_LOCALE } from '../../../i18n';
 
 describe('<Navigation />', () => {
   it('Expect to not log errors in console', () => {

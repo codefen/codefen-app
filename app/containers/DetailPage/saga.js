@@ -5,6 +5,7 @@ import { GET_ISSUE } from './constants';
 import { getIssueErrorAction, getIssueSuccessAction } from './actions';
 import { makeSelectPrepareIssueId } from './selectors';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
+import { loginErrorAction } from '../LoginPage/actions';
 
 export function* issue() {
   const session = yield select(makeSelectSession());
@@ -13,19 +14,20 @@ export function* issue() {
   const companyId = user.company_id;
   const requestURL = `${API_BASE_URL}${API_COMPANY_ISSUE}&session=${session}&company_id=${companyId}&issue_id=${issueId}`;
 
-  if (!session || !user || !companyId)
+  if (!session || !user || !companyId) {
     return yield put(getIssueErrorAction('error'));
+  }
 
   try {
     const response = yield call(request, requestURL);
 
-    if (response.response === 'error')
+    if (response.response === 'error') {
       return yield put(getIssueErrorAction('error'));
+    }
 
-    yield put(getIssueSuccessAction(response.issue));
+    return yield put(getIssueSuccessAction(response.issue));
   } catch (error) {
-    // yield put(loginErrorAction(error));
-    console.log(error);
+    return yield put(loginErrorAction(error));
   }
 }
 

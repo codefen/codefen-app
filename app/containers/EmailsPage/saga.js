@@ -1,13 +1,14 @@
-import { GET_EMAILS } from './constants';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
-import { makeSelectSession, makeSelectUser } from '../App/selectors';
 import request from 'utils/request';
 import { API_BASE_URL, API_COMPANY_EMAILS } from 'utils/api';
+import { makeSelectSession, makeSelectUser } from '../App/selectors';
+import { GET_EMAILS } from './constants';
 import {
   getEmailsSuccessAction,
   getEmailsErrorAction,
   getTransformEmailsAction,
 } from './actions';
+import { loginErrorAction } from '../LoginPage/actions';
 
 export function* emails() {
   const session = yield select(makeSelectSession());
@@ -15,14 +16,16 @@ export function* emails() {
   const companyId = user.company_id;
   const requestURL = `${API_BASE_URL}${API_COMPANY_EMAILS}&session=${session}&company_id=${companyId}`;
 
-  if (!session || !user || !companyId)
+  if (!session || !user || !companyId) {
     return yield put(getEmailsErrorAction('error'));
+  }
 
   try {
     const response = yield call(request, requestURL);
 
-    if (response.response === 'error')
+    if (response.response === 'error') {
       return yield put(getEmailsErrorAction('error'));
+    }
 
     yield put(getEmailsSuccessAction(response.company, response.emails));
 
@@ -32,10 +35,9 @@ export function* emails() {
       reference: email.info,
     }));
 
-    yield put(getTransformEmailsAction(transformEmails));
+    return yield put(getTransformEmailsAction(transformEmails));
   } catch (error) {
-    // yield put(loginErrorAction(error));
-    console.log(error);
+    return yield put(loginErrorAction(error));
   }
 }
 

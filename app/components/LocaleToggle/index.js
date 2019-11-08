@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import Toggle from 'components/Toggle';
+import { changeLocale } from 'containers/LanguageProvider/actions';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import Wrapper from './Wrapper';
 import messages from './messages';
 import { appLocales } from '../../i18n';
-import { changeLocale } from 'containers/LanguageProvider/actions';
-import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 
 export function LocaleToggle(props) {
   return (

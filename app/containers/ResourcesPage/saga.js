@@ -1,5 +1,5 @@
 import request from 'utils/request';
-import { takeLatest, select, put, call, cancel } from 'redux-saga/effects';
+import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { API_BASE_URL, API_COMPANY_RESOURCES } from 'utils/api';
 import { GET_RESOURCES } from './constants';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';

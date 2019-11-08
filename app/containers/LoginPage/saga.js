@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'utils/request';
 import { FormattedMessage } from 'react-intl';
-import { takeLatest, select, put, call, cancel } from 'redux-saga/effects';
+import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { API_BASE_URL, API_USER_ACCESS } from 'utils/api';
 import messages from './messages';

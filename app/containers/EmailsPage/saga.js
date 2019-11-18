@@ -8,7 +8,6 @@ import {
   getEmailsErrorAction,
   getTransformEmailsAction,
 } from './actions';
-import { loginErrorAction } from '../LoginPage/actions';
 
 export function* emails() {
   const session = yield select(makeSelectSession());
@@ -37,7 +36,7 @@ export function* emails() {
 
     return yield put(getTransformEmailsAction(transformEmails));
   } catch (error) {
-    return yield put(loginErrorAction(error));
+    return yield put(getEmailsErrorAction(error));
   }
 }
 

@@ -8,7 +8,6 @@ import {
   getResourcesErrorAction,
   getTransformResourcesAction,
 } from './actions';
-import { loginErrorAction } from '../LoginPage/actions';
 
 export function* resources() {
   const session = yield select(makeSelectSession());
@@ -38,7 +37,7 @@ export function* resources() {
 
     return yield put(getTransformResourcesAction(transformResources));
   } catch (error) {
-    return yield put(loginErrorAction(error));
+    return yield put(getResourcesErrorAction(error));
   }
 }
 

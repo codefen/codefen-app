@@ -56,7 +56,7 @@ export function getCompaniesListErrorAction(error) {
  *
  * @return {object} An action object with a type of GET_TRANSFORM_EMAILS
  */
-export function getTransformEmailsAction(transformCompaniesList) {
+export function getTransformCompaniesListAction(transformCompaniesList) {
   return {
     type: GET_TRANSFORM_COMPANIES_LIST,
     transformCompaniesList,

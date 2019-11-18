@@ -5,7 +5,6 @@ import { GET_ISSUE } from './constants';
 import { getIssueErrorAction, getIssueSuccessAction } from './actions';
 import { makeSelectPrepareIssueId } from './selectors';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
-import { loginErrorAction } from '../LoginPage/actions';
 
 export function* issue() {
   const session = yield select(makeSelectSession());
@@ -27,7 +26,7 @@ export function* issue() {
 
     return yield put(getIssueSuccessAction(response.issue));
   } catch (error) {
-    return yield put(loginErrorAction(error));
+    return yield put(getIssueErrorAction(error));
   }
 }
 

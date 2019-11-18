@@ -8,7 +8,6 @@ import {
   getIssuesSuccessAction,
   getTransformIssuesAction,
 } from './actions';
-import { loginErrorAction } from '../LoginPage/actions';
 
 export function* issues() {
   const session = yield select(makeSelectSession());
@@ -39,7 +38,7 @@ export function* issues() {
 
     return yield put(getTransformIssuesAction(transformIssues));
   } catch (error) {
-    return yield put(loginErrorAction(error));
+    return yield put(getIssuesErrorAction(error));
   }
 }
 

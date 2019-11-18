@@ -18,16 +18,16 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-const stateSelector = createStructuredSelector({
-  companiesListPage: makeSelectCompaniesListPage(),
-});
+// const stateSelector = createStructuredSelector({
+//   companiesListPage: makeSelectCompaniesListPage(),
+// });
 
 function CompaniesListPage() {
   useInjectReducer({ key: 'companiesListPage', reducer });
   useInjectSaga({ key: 'companiesListPage', saga });
 
   /* eslint-disable no-unused-vars */
-  const { companiesListPage } = useSelector(stateSelector);
+  // const { companiesListPage } = useSelector(stateSelector);
   const dispatch = useDispatch();
   /* eslint-enable no-unused-vars */
 

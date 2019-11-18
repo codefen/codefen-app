@@ -16,11 +16,33 @@ const selectCompaniesListPageDomain = state =>
  * Default selector used by CompaniesListPage
  */
 
-const makeSelectCompaniesListPage = () =>
+const makeSelectTransformCompaniesList = () =>
   createSelector(
     selectCompaniesListPageDomain,
-    substate => substate,
+    companiesListPageState => companiesListPageState.transformCompaniesList,
   );
 
-export default makeSelectCompaniesListPage;
-export { selectCompaniesListPageDomain };
+const makeSelectCompaniesList = () =>
+  createSelector(
+    selectCompaniesListPageDomain,
+    companiesListPageState => companiesListPageState.companiesList,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectCompaniesListPageDomain,
+    companiesListPageState => companiesListPageState.error,
+  );
+
+const makeSelectIsLoading = () =>
+  createSelector(
+    selectCompaniesListPageDomain,
+    companiesListPageState => companiesListPageState.isLoading,
+  );
+
+export {
+  makeSelectCompaniesList,
+  makeSelectTransformCompaniesList,
+  makeSelectError,
+  makeSelectIsLoading,
+};

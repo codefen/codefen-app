@@ -17,6 +17,7 @@ import reducer from 'containers/App/reducer';
 import saga from 'containers/App/saga';
 import {
   HOME,
+  COMPANIES_LIST,
   LOGIN,
   ISSUES,
   RESOURCES,
@@ -25,6 +26,7 @@ import {
 } from 'routes';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
+import CompaniesListPage from 'containers/CompaniesListPage/Loadable';
 import IssuesPage from 'containers/IssuesPage/Loadable';
 import ResourcesPage from 'containers/ResourcesPage/Loadable';
 import EmailsPage from 'containers/EmailsPage/Loadable';
@@ -46,6 +48,7 @@ export default function App() {
         <Route exact path={LOGIN} component={LoginPage} />
         <Layout>
           <Switch>
+            <Route exact path={COMPANIES_LIST} component={CompaniesListPage} />
             <Route exact path={ISSUES} component={IssuesPage} />
             <Route path={`${ISSUES}/:issueId`} component={DetailPage} />
 

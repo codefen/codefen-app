@@ -8,7 +8,6 @@ import {
   GET_COMPANIES_LIST,
   GET_COMPANIES_LIST_SUCCESS,
   GET_COMPANIES_LIST_ERROR,
-  GET_TRANSFORM_COMPANIES_LIST,
 } from './constants';
 
 /**
@@ -47,18 +46,5 @@ export function getCompaniesListErrorAction(error) {
   return {
     type: GET_COMPANIES_LIST_ERROR,
     error,
-  };
-}
-
-/**
- * Transform issues
- * @param  {array} transformEmails The transform emails
- *
- * @return {object} An action object with a type of GET_TRANSFORM_EMAILS
- */
-export function getTransformCompaniesListAction(transformCompaniesList) {
-  return {
-    type: GET_TRANSFORM_COMPANIES_LIST,
-    transformCompaniesList,
   };
 }

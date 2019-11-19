@@ -16,12 +16,6 @@ const selectCompaniesListPageDomain = state =>
  * Default selector used by CompaniesListPage
  */
 
-const makeSelectTransformCompaniesList = () =>
-  createSelector(
-    selectCompaniesListPageDomain,
-    companiesListPageState => companiesListPageState.transformCompaniesList,
-  );
-
 const makeSelectCompaniesList = () =>
   createSelector(
     selectCompaniesListPageDomain,
@@ -40,9 +34,4 @@ const makeSelectIsLoading = () =>
     companiesListPageState => companiesListPageState.isLoading,
   );
 
-export {
-  makeSelectCompaniesList,
-  makeSelectTransformCompaniesList,
-  makeSelectError,
-  makeSelectIsLoading,
-};
+export { makeSelectCompaniesList, makeSelectError, makeSelectIsLoading };

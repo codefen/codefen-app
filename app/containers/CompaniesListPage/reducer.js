@@ -10,7 +10,6 @@ import {
   GET_COMPANIES_LIST,
   GET_COMPANIES_LIST_SUCCESS,
   GET_COMPANIES_LIST_ERROR,
-  GET_TRANSFORM_COMPANIES_LIST,
 } from './constants';
 
 export const initialState = {
@@ -33,7 +32,6 @@ export const initialState = {
     eliminado: '',
     creacion: '',
   },
-  transformCompaniesList: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -49,10 +47,6 @@ const companiesListPageReducer = produce((draft, action) => {
     case GET_COMPANIES_LIST_ERROR:
       draft.isLoading = false;
       draft.error = action.error;
-      break;
-    case GET_TRANSFORM_COMPANIES_LIST:
-      draft.isLoading = false;
-      draft.transformCompaniesList = action.transformCompaniesList;
       break;
     case LOGOUT:
       draft.transformCompaniesList = initialState.transformCompaniesList;

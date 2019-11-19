@@ -6,7 +6,6 @@ import { GET_COMPANIES_LIST } from './constants';
 import {
   getCompaniesListErrorAction,
   getCompaniesListSuccessAction,
-  getTransformCompaniesListAction,
 } from './actions';
 
 export function* companiesList() {
@@ -26,14 +25,7 @@ export function* companiesList() {
       return yield put(getCompaniesListErrorAction('error'));
     }
 
-    yield put(getCompaniesListSuccessAction(response.companies));
-
-    const transformCompaniesList = response.companies.map(({ ...company }) => ({
-      ...company,
-      key: company.id,
-    }));
-
-    return yield put(getTransformCompaniesListAction(transformCompaniesList));
+    return yield put(getCompaniesListSuccessAction(response.companies));
   } catch (error) {
     return yield put(getCompaniesListErrorAction(error));
   }

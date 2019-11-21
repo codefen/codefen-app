@@ -15,23 +15,7 @@ import {
 export const initialState = {
   isLoading: false,
   error: '',
-  companiesList: {
-    id: '',
-    name: '',
-    main_resource: '',
-    nickname: '',
-    small_desc: '',
-    issues_solved: '',
-    issues_open: '',
-    plan: '',
-    address_pais: '',
-    address_provincia: '',
-    address_ciudad: '',
-    address_self: '',
-    profile_media: '',
-    eliminado: '',
-    creacion: '',
-  },
+  companiesList: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */

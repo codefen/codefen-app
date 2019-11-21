@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Menu from 'components/App/Menu';
 import { logoutAction } from 'containers/App/actions';
-import { makeSelectLocation } from 'containers/App/selectors';
+import { makeSelectLocation, makeSelectUser } from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
-import { ISSUES, RESOURCES, EMAIL_ADRESSES } from 'routes';
+import { ISSUES, RESOURCES, EMAIL_ADRESSES, COMPANIES_LIST } from 'routes';
 import issueImage from 'images/icon_issue.svg';
 import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
@@ -20,11 +20,13 @@ import NavigationCustomIcon from './NavigationCustomIcon';
 
 const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),
+  user: makeSelectUser(),
 });
 
 export default function Navigation() {
   const {
     location: { pathname },
+    user: { role },
   } = useSelector(stateSelector);
 
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ export default function Navigation() {
   const handleSelected = () => {
     const selectedKeys = [];
 
+    if (pathname.includes(COMPANIES_LIST)) selectedKeys.push('0');
     if (pathname.includes(ISSUES)) selectedKeys.push('1');
     if (pathname.includes(RESOURCES)) selectedKeys.push('2');
     if (pathname.includes(EMAIL_ADRESSES)) selectedKeys.push('3');
@@ -45,6 +48,15 @@ export default function Navigation() {
       selectedKeys={handleSelected && handleSelected()}
       mode="inline"
     >
+      {role === 'admin' && (
+        <Menu.Item key="0">
+          <NavLinkWrapper to={COMPANIES_LIST}>
+            <Icon type="monitor" />
+            <FormattedMessage {...messages.companiesList} />
+          </NavLinkWrapper>
+        </Menu.Item>
+      )}
+
       <Menu.Item key="1">
         <NavLinkWrapper to={ISSUES}>
           <Icon

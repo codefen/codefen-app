@@ -9,6 +9,10 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.components.App.Navigation';
 
 export default defineMessages({
+  companiesList: {
+    id: `${scope}.companiesList`,
+    defaultMessage: 'companies list',
+  },
   foundIssues: {
     id: `${scope}.foundIssues`,
     defaultMessage: 'found issues',

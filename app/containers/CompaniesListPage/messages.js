@@ -11,6 +11,10 @@ export const scope = 'app.containers.CompaniesListPage';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'This is the CompaniesListPage container!',
+    defaultMessage: 'companies list - codefen.com',
+  },
+  companiesList: {
+    id: `${scope}.companiesList`,
+    defaultMessage: 'companies list',
   },
 });

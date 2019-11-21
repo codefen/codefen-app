@@ -22,6 +22,12 @@ const makeSelectCompaniesList = () =>
     companiesListPageState => companiesListPageState.companiesList,
   );
 
+const makeSelectTransformCompaniesList = () =>
+  createSelector(
+    selectCompaniesListPageDomain,
+    companiesListPageState => companiesListPageState.transformCompaniesList,
+  );
+
 const makeSelectError = () =>
   createSelector(
     selectCompaniesListPageDomain,
@@ -34,4 +40,9 @@ const makeSelectIsLoading = () =>
     companiesListPageState => companiesListPageState.isLoading,
   );
 
-export { makeSelectCompaniesList, makeSelectError, makeSelectIsLoading };
+export {
+  makeSelectCompaniesList,
+  makeSelectTransformCompaniesList,
+  makeSelectError,
+  makeSelectIsLoading,
+};

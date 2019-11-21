@@ -25,6 +25,7 @@ import makeSelectCompaniesListPage, {
   makeSelectCompaniesList,
   makeSelectError,
   makeSelectIsLoading,
+  makeSelectTransformCompaniesList,
 } from './selectors';
 
 import reducer from './reducer';
@@ -35,29 +36,34 @@ import TableWrapper from '../../components/App/Table';
 
 const stateSelector = createStructuredSelector({
   companiesList: makeSelectCompaniesList(),
+  transformCompaniesList: makeSelectTransformCompaniesList(),
   isLoading: makeSelectIsLoading(),
 });
-
-export const companiesColumns = [
-  {
-    title: 'name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => text || 'undefined',
-  },
-];
 
 export default function CompaniesListPage() {
   useInjectReducer({ key: 'companiesListPage', reducer });
   useInjectSaga({ key: 'companiesListPage', saga });
 
-  const { companiesList, isLoading } = useSelector(stateSelector);
+  const { transformCompaniesList, isLoading } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleCompaniesList = () => dispatch(getCompaniesListAction());
 
+  const issuesColumns = [
+    {
+      title: 'id',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
+      title: 'name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+  ];
+
   useEffect(() => {
-    handleCompaniesList();
-  }, []);
+    if (!transformCompaniesList) handleCompaniesList();
+  }, [transformCompaniesList]);
 
   return (
     <>
@@ -76,8 +82,8 @@ export default function CompaniesListPage() {
       </PageHeader>
 
       <TableWrapper
-        columns={companiesColumns}
-        dataSource={isLoading ? companiesList : null}
+        columns={issuesColumns}
+        dataSource={!isLoading ? transformCompaniesList : null}
       />
     </>
   );

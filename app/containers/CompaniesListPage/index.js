@@ -23,6 +23,7 @@ import {
 import issueImage from 'images/header_issue.svg';
 import greyImage from 'images/grey_issue.svg';
 
+import { checkAdminLoggedAction } from 'containers/App/actions';
 import {
   makeSelectCompaniesList,
   makeSelectError,
@@ -35,6 +36,12 @@ import saga from './saga';
 import messages from './messages';
 import { getCompaniesListAction } from './actions';
 import TableWrapper from '../../components/App/Table';
+import {
+  CompanyNameWrapper,
+  CompanyImageWrapper,
+  CompanyTableWrapper,
+  CompanyLogoWrapper,
+} from '../../components/App/Company';
 
 const stateSelector = createStructuredSelector({
   companiesList: makeSelectCompaniesList(),
@@ -49,59 +56,73 @@ export default function CompaniesListPage() {
   const { transformCompaniesList, isLoading } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleCompaniesList = () => dispatch(getCompaniesListAction());
+  const handleAdminLogged = () => dispatch(checkAdminLoggedAction());
 
   const companiesListColumns = [
     {
       title: 'profile_media',
       dataIndex: 'profile_media',
       key: 'profile_media',
+      render: text => (
+        <CompanyLogoWrapper
+          tablet
+          src={`https://codefen.com/main/media/profiles/${text}`}
+        />
+      ),
     },
     {
-      title: 'name',
+      title: <FormattedMessage {...messages.name} />,
       dataIndex: 'name',
       key: 'name',
       render: (text, record) => (
-        <div>
-          <div>{text}</div>
-          <div>{transformCompaniesList[record.key - 1].small_desc}</div>
-        </div>
+        <CompanyTableWrapper name>
+          <CompanyLogoWrapper
+            mobile
+            src={`https://codefen.com/main/media/profiles/${transformCompaniesList[record.key - 1].profile_media}`}
+          />
+          <div>
+            <CompanyNameWrapper header>{text}</CompanyNameWrapper>
+            <div>{transformCompaniesList[record.key - 1].small_desc}</div>
+          </div>
+        </CompanyTableWrapper>
       ),
     },
     {
-      title: 'issues_open',
+      title: <FormattedMessage {...messages.issuesOpened} />,
       dataIndex: 'issues_open',
       key: 'issues_open',
       render: text => (
-        <div>
-          <PageHeaderImage src={issueImage} />
-          <div>{text}</div>
-        </div>
+        <CompanyTableWrapper>
+          <CompanyImageWrapper src={issueImage} />
+          <CompanyNameWrapper>{text}</CompanyNameWrapper>
+        </CompanyTableWrapper>
       ),
     },
     {
-      title: 'issues_solved',
+      title: <FormattedMessage {...messages.issuesSolved} />,
       dataIndex: 'issues_solved',
       key: 'issues_solved',
       render: text => (
-        <div>
-          <PageHeaderImage src={greyImage} />
+        <CompanyTableWrapper>
+          <CompanyImageWrapper src={greyImage} />
           <div>{text}</div>
-        </div>
+        </CompanyTableWrapper>
       ),
     },
     {
-      title: 'creacion',
+      title: <FormattedMessage {...messages.creation} />,
       dataIndex: 'creacion',
       key: 'creacion',
     },
     {
-      title: 'plan',
+      title: <FormattedMessage {...messages.plan} />,
       dataIndex: 'plan',
       key: 'plan',
     },
   ];
 
   useEffect(() => {
+    handleAdminLogged();
     if (!transformCompaniesList.length) handleCompaniesList();
   }, [transformCompaniesList]);
 
@@ -122,6 +143,7 @@ export default function CompaniesListPage() {
       </PageHeader>
 
       <TableWrapper
+        companiesList={companiesListColumns}
         columns={companiesListColumns}
         dataSource={!isLoading ? transformCompaniesList : null}
       />

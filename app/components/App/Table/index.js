@@ -74,6 +74,9 @@ const TableWrapper = styled(Table)`
               content: ${props =>
                 props.emails &&
                 `'${props.emails[2].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.companiesList &&
+                `'${props.companiesList[2].title.props.defaultMessage}'`};
             }
           }
 
@@ -85,6 +88,25 @@ const TableWrapper = styled(Table)`
               content: ${props =>
                 props.resources &&
                 `'${props.resources[3].title.props.defaultMessage}'`};
+              content: ${props =>
+                props.companiesList &&
+                `'${props.companiesList[3].title.props.defaultMessage}'`};
+            }
+          }
+
+          &:nth-child(5) {
+            &::before {
+              content: ${props =>
+                props.companiesList &&
+                `'${props.companiesList[4].title.props.defaultMessage}'`};
+            }
+          }
+
+          &:nth-child(6) {
+            &::before {
+              content: ${props =>
+                props.companiesList &&
+                `'${props.companiesList[5].title.props.defaultMessage}'`};
             }
           }
 
@@ -93,6 +115,10 @@ const TableWrapper = styled(Table)`
           }
         }
       }
+    }
+
+    .ant-table-thead {
+      display: ${props => props.companiesList && 'none'};
     }
 
     .ant-table-body {

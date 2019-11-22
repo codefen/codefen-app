@@ -17,4 +17,24 @@ export default defineMessages({
     id: `${scope}.companiesList`,
     defaultMessage: 'companies list',
   },
+  name: {
+    id: `${scope}.name`,
+    defaultMessage: 'name',
+  },
+  issuesOpened: {
+    id: `${scope}.issuesOpened`,
+    defaultMessage: 'issues opened',
+  },
+  issuesSolved: {
+    id: `${scope}.issuesSolved`,
+    defaultMessage: 'issues solved',
+  },
+  creation: {
+    id: `${scope}.creation`,
+    defaultMessage: 'creation',
+  },
+  plan: {
+    id: `${scope}.plan`,
+    defaultMessage: 'plan',
+  },
 });

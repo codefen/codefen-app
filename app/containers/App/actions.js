@@ -9,16 +9,28 @@ import {
   TOGGLE_DRAWER,
   LOGOUT,
   CHECK_USER_LOGGED,
+  CHECK_ADMIN_LOGGED,
 } from './constants';
 
 /**
- * Check USer is Logged
+ * Check User is Logged
  *
  * @return {object} An action object with a type of CHECK_USER_LOGGED
  */
 export function checkUserLoggedAction() {
   return {
     type: CHECK_USER_LOGGED,
+  };
+}
+
+/**
+ * Check Admin is Logged
+ *
+ * @return {object} An action object with a type of CHECK_ADMIN_LOGGED
+ */
+export function checkAdminLoggedAction() {
+  return {
+    type: CHECK_ADMIN_LOGGED,
   };
 }
 

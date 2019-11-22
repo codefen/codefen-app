@@ -21,7 +21,9 @@ import {
   ResearcherWrapper,
 } from 'components/App/Page';
 import issueImage from 'images/header_issue.svg';
-import makeSelectCompaniesListPage, {
+import greyImage from 'images/grey_issue.svg';
+
+import {
   makeSelectCompaniesList,
   makeSelectError,
   makeSelectIsLoading,
@@ -48,21 +50,59 @@ export default function CompaniesListPage() {
   const dispatch = useDispatch();
   const handleCompaniesList = () => dispatch(getCompaniesListAction());
 
-  const issuesColumns = [
+  const companiesListColumns = [
     {
-      title: 'id',
-      dataIndex: 'id',
-      key: 'id',
+      title: 'profile_media',
+      dataIndex: 'profile_media',
+      key: 'profile_media',
     },
     {
       title: 'name',
       dataIndex: 'name',
       key: 'name',
+      render: (text, record) => (
+        <div>
+          <div>{text}</div>
+          <div>{transformCompaniesList[record.key - 1].small_desc}</div>
+        </div>
+      ),
+    },
+    {
+      title: 'issues_open',
+      dataIndex: 'issues_open',
+      key: 'issues_open',
+      render: text => (
+        <div>
+          <PageHeaderImage src={issueImage} />
+          <div>{text}</div>
+        </div>
+      ),
+    },
+    {
+      title: 'issues_solved',
+      dataIndex: 'issues_solved',
+      key: 'issues_solved',
+      render: text => (
+        <div>
+          <PageHeaderImage src={greyImage} />
+          <div>{text}</div>
+        </div>
+      ),
+    },
+    {
+      title: 'creacion',
+      dataIndex: 'creacion',
+      key: 'creacion',
+    },
+    {
+      title: 'plan',
+      dataIndex: 'plan',
+      key: 'plan',
     },
   ];
 
   useEffect(() => {
-    if (!transformCompaniesList) handleCompaniesList();
+    if (!transformCompaniesList.length) handleCompaniesList();
   }, [transformCompaniesList]);
 
   return (
@@ -82,7 +122,7 @@ export default function CompaniesListPage() {
       </PageHeader>
 
       <TableWrapper
-        columns={issuesColumns}
+        columns={companiesListColumns}
         dataSource={!isLoading ? transformCompaniesList : null}
       />
     </>

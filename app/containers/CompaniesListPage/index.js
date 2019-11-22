@@ -103,7 +103,7 @@ export default function CompaniesListPage() {
       dataIndex: 'issues_solved',
       key: 'issues_solved',
       render: text => (
-        <CompanyTableWrapper>
+        <CompanyTableWrapper issues>
           <CompanyImageWrapper src={greyImage} />
           <div>{text}</div>
         </CompanyTableWrapper>

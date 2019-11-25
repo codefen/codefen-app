@@ -100,6 +100,7 @@ export function getSpecificallyIssuesErrorAction(error) {
 
 /**
  * Transform issues
+ *
  * @param  {array} transformIssues The transform issues
  *
  * @return {object} An action object with a type of GET_TRANSFORM_ISSUES
@@ -113,6 +114,7 @@ export function getTransformIssuesAction(transformIssues) {
 
 /**
  * Transform issues
+ *
  * @param  {array} transformSpecificallyIssues The specifically transform issues
  *
  * @return {object} An action object with a type of GET_TRANSFORM_SPECIFICALLY_ISSUES

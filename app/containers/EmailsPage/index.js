@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,11 +22,15 @@ import {
   PageHeaderIcon,
 } from 'components/App/Page';
 import TableWrapper from 'components/App/Table';
-import { makeSelectIsLoading, makeSelectTransformEmails } from './selectors';
+import {
+  makeSelectIsLoading,
+  makeSelectTransformEmails,
+  makeSelectTransformSpecificallyEmails,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { getEmailsAction } from './actions';
+import { getEmailsAction, getSpecificallyEmailsAction } from './actions';
 
 export const emailsColumns = [
   {
@@ -51,19 +56,28 @@ export const emailsColumns = [
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   transformEmails: makeSelectTransformEmails(),
+  transformSpecificallyEmails: makeSelectTransformSpecificallyEmails(),
 });
 
-export default function EmailsPage() {
+export default function EmailsPage({ match }) {
   useInjectReducer({ key: 'emailsPage', reducer });
   useInjectSaga({ key: 'emailsPage', saga });
 
-  const { isLoading, transformEmails } = useSelector(stateSelector);
+  const { params } = match;
+  const {
+    isLoading,
+    transformEmails,
+    transformSpecificallyEmails,
+  } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleEmails = () => dispatch(getEmailsAction());
+  const handleSpecificallyEmails = companyId =>
+    dispatch(getSpecificallyEmailsAction(companyId));
 
   useEffect(() => {
-    if (!transformEmails.length) handleEmails();
-  }, [transformEmails]);
+    if (!transformEmails.length && !params.companyId) handleEmails();
+    if (params.companyId) handleSpecificallyEmails(params.companyId);
+  }, [transformEmails, params.companyId]);
 
   return (
     <>
@@ -84,8 +98,18 @@ export default function EmailsPage() {
       <TableWrapper
         emails={emailsColumns}
         columns={emailsColumns}
-        dataSource={!isLoading ? transformEmails : null}
+        dataSource={
+          !isLoading ? transformSpecificallyEmails || transformEmails : null
+        }
       />
     </>
   );
 }
+
+EmailsPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      companyId: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
+};

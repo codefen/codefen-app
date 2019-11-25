@@ -73,8 +73,6 @@ export function* specificallyIssues() {
       researcher: `@${issue.researcher_username}`,
     }));
 
-    console.log(transformSpecificallyIssues);
-
     return yield put(
       getTransformSpecificallyIssuesAction(transformSpecificallyIssues),
     );

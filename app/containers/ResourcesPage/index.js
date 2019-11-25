@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,11 +14,15 @@ import issueImage from 'images/header_issue.svg';
 import { Icon } from 'antd';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeSelectIsLoading, makeSelectTransformResources } from './selectors';
+import {
+  makeSelectIsLoading,
+  makeSelectTransformResources,
+  makeSelectTransformSpecificallyResources,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { getResourcesAction } from './actions';
+import { getResourcesAction, getSpecificallyResourcesAction } from './actions';
 import {
   PageHeader,
   PageHeaderImage,
@@ -62,19 +67,28 @@ export const resourcesColumns = [
 const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   transformResources: makeSelectTransformResources(),
+  transformSpecificallyResources: makeSelectTransformSpecificallyResources(),
 });
 
-export default function ResourcesPage() {
+export default function ResourcesPage({ match }) {
   useInjectReducer({ key: 'resourcesPage', reducer });
   useInjectSaga({ key: 'resourcesPage', saga });
 
-  const { isLoading, transformResources } = useSelector(stateSelector);
+  const { params } = match;
+  const {
+    isLoading,
+    transformResources,
+    transformSpecificallyResources,
+  } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleResources = () => dispatch(getResourcesAction());
+  const handleSpecificallyResources = companyId =>
+    dispatch(getSpecificallyResourcesAction(companyId));
 
   useEffect(() => {
-    if (!transformResources.length) handleResources();
-  }, [transformResources]);
+    if (!transformResources.length && !params.companyId) handleResources();
+    if (params.companyId) handleSpecificallyResources(params.companyId);
+  }, [transformResources, params.companyId]);
 
   return (
     <>
@@ -95,8 +109,20 @@ export default function ResourcesPage() {
       <TableWrapper
         resources={resourcesColumns}
         columns={resourcesColumns}
-        dataSource={!isLoading ? transformResources : null}
+        dataSource={
+          !isLoading
+            ? transformSpecificallyResources || transformResources
+            : null
+        }
       />
     </>
   );
 }
+
+ResourcesPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      companyId: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
+};

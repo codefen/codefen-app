@@ -39,9 +39,23 @@ const makeSelectError = () =>
     resourcesPageState => resourcesPageState.error,
   );
 
+const makeSelectSpecificallyCompanyId = () =>
+  createSelector(
+    selectResourcesPageDomain,
+    resourcesPageState => resourcesPageState.specificallyCompanyId,
+  );
+
+const makeSelectTransformSpecificallyResources = () =>
+  createSelector(
+    selectResourcesPageDomain,
+    resourcesPageState => resourcesPageState.transformSpecificallyResources,
+  );
+
 export {
   makeSelectResources,
+  makeSelectSpecificallyCompanyId,
   makeSelectTransformResources,
+  makeSelectTransformSpecificallyResources,
   makeSelectIsLoading,
   makeSelectError,
 };

@@ -27,7 +27,7 @@ const MenuWrapper = styled(Menu)`
       &.ant-menu-item-selected {
         background-color: rgba(0, 0, 0, 0.05);
         color: #fff;
-        // pointer-events: none;
+        pointer-events: none;
         font-weight: 700;
 
         &:after {

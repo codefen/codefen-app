@@ -21,6 +21,12 @@ const makeSelectEmails = () =>
     emailsPageState => emailsPageState.emails,
   );
 
+const makeSelectSpecificallyCompanyId = () =>
+  createSelector(
+    selectEmailsPageDomain,
+    emailsPageState => emailsPageState.specificallyCompanyId,
+  );
+
 const makeSelectTransformEmails = () =>
   createSelector(
     selectEmailsPageDomain,
@@ -39,9 +45,17 @@ const makeSelectError = () =>
     emailsPageState => emailsPageState.error,
   );
 
+const makeSelectTransformSpecificallyEmails = () =>
+  createSelector(
+    selectEmailsPageDomain,
+    emailsPageState => emailsPageState.transformSpecificallyEmails,
+  );
+
 export {
   makeSelectEmails,
+  makeSelectSpecificallyCompanyId,
   makeSelectTransformEmails,
   makeSelectIsLoading,
+  makeSelectTransformSpecificallyEmails,
   makeSelectError,
 };

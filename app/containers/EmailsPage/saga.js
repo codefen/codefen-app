@@ -3,6 +3,7 @@ import { takeLatest, select, put, call } from 'redux-saga/effects';
 import request from 'utils/request';
 import { API_BASE_URL, API_COMPANY_EMAILS } from 'utils/api';
 import { push } from 'connected-react-router';
+import { COMPANIES_LIST } from 'routes';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
 import { GET_EMAILS, GET_SPECIFICALLY_EMAILS } from './constants';
 import {
@@ -22,7 +23,7 @@ export function* emails() {
   const requestURL = `${API_BASE_URL}${API_COMPANY_EMAILS}&session=${session}&company_id=${company_id}`;
 
   if (role === 'admin') {
-    return yield put(push('/login'));
+    return yield put(push(`/${COMPANIES_LIST}`));
   }
 
   if (!session || !user || !company_id) {

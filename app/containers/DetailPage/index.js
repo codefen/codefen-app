@@ -46,53 +46,53 @@ export default function DetailPage({ match }) {
     if (match.params.companyId) handleSpecificallyIssue();
   }, [match.params.companyId]);
 
-  return (
+  return (specificallyIssue && specificallyIssue[0]) || issue[0] ? (
     <>
-      {(specificallyIssue && specificallyIssue[0]) || (issue && issue[0]) ? (
-        <>
-          <header>
-            <DetailHeaderWrapper>
-              {specificallyIssue[0].name || issue[0].name}
-            </DetailHeaderWrapper>
-            <DetailSubheaderWrapper>
-              <DetailSubheaderItemWrapper>
-                <FormattedMessage {...messages.researcher} /> @
-                {specificallyIssue[0].researcher_username ||
-                  issue[0].researcher_username}
-              </DetailSubheaderItemWrapper>
+      <header>
+        <DetailHeaderWrapper>
+          {(specificallyIssue && specificallyIssue[0].name) || issue[0].name}
+        </DetailHeaderWrapper>
+        <DetailSubheaderWrapper>
+          <DetailSubheaderItemWrapper>
+            <FormattedMessage {...messages.researcher} /> @
+            {(specificallyIssue && specificallyIssue[0].researcher_username) ||
+              issue[0].researcher_username}
+          </DetailSubheaderItemWrapper>
 
-              <DetailSubheaderItemWrapper>
-                <FormattedMessage {...messages.published} />
-                {specificallyIssue[0].creacion || issue[0].creacion}
-              </DetailSubheaderItemWrapper>
+          <DetailSubheaderItemWrapper>
+            <FormattedMessage {...messages.published} />
+            {(specificallyIssue && specificallyIssue[0].creacion) ||
+              issue[0].creacion}
+          </DetailSubheaderItemWrapper>
 
-              <DetailSubheaderItemWrapper>
-                <FormattedMessage {...messages.company} /> @
-                {specificallyIssue[0].company_nickname ||
-                  issue[0].company_nickname}
-              </DetailSubheaderItemWrapper>
+          <DetailSubheaderItemWrapper>
+            <FormattedMessage {...messages.company} /> @
+            {(specificallyIssue && specificallyIssue[0].company_nickname) ||
+              issue[0].company_nickname}
+          </DetailSubheaderItemWrapper>
 
-              <DetailSubheaderItemWrapper>
-                <FormattedMessage {...messages.status} />
-                {specificallyIssue[0].solved || issue[0].solved}
-              </DetailSubheaderItemWrapper>
+          <DetailSubheaderItemWrapper>
+            <FormattedMessage {...messages.status} />
+            {(specificallyIssue && specificallyIssue[0].solved) ||
+              issue[0].solved}
+          </DetailSubheaderItemWrapper>
 
-              <DetailSubheaderItemWrapper>
-                <FormattedMessage {...messages.risk} />{' '}
-                {specificallyIssue[0].risk_level || issue[0].risk_level}
-              </DetailSubheaderItemWrapper>
-            </DetailSubheaderWrapper>
-          </header>
+          <DetailSubheaderItemWrapper>
+            <FormattedMessage {...messages.risk} />{' '}
+            {(specificallyIssue && specificallyIssue[0].risk_level) ||
+              issue[0].risk_level}
+          </DetailSubheaderItemWrapper>
+        </DetailSubheaderWrapper>
+      </header>
 
-          <DetailMainWrapper
-            dangerouslySetInnerHTML={{
-              __html: specificallyIssue[0].issue || issue[0].issue,
-            }}
-          />
-        </>
-      ) : null}
+      <DetailMainWrapper
+        dangerouslySetInnerHTML={{
+          __html:
+            (specificallyIssue && specificallyIssue[0].issue) || issue[0].issue,
+        }}
+      />
     </>
-  );
+  ) : null;
 }
 
 DetailPage.propTypes = {

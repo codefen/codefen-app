@@ -3,6 +3,7 @@ import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { API_BASE_URL, API_COMPANY_ISSUE } from 'utils/api';
 import request from 'utils/request';
 import { push } from 'connected-react-router';
+import { COMPANIES_LIST } from 'routes';
 import { GET_ISSUE, GET_SPECIFICALLY_ISSUE } from './constants';
 import {
   getIssueErrorAction,
@@ -25,7 +26,7 @@ export function* issue() {
   const requestURL = `${API_BASE_URL}${API_COMPANY_ISSUE}&session=${session}&company_id=${company_id}&issue_id=${issueId}`;
 
   if (role === 'admin') {
-    return yield put(push('/login'));
+    return yield put(push(`/${COMPANIES_LIST}`));
   }
 
   if (!session || !user || !company_id) {

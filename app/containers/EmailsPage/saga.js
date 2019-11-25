@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
 import { takeLatest, select, put, call } from 'redux-saga/effects';
 import request from 'utils/request';
 import { API_BASE_URL, API_COMPANY_EMAILS } from 'utils/api';
+import { push } from 'connected-react-router';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
 import { GET_EMAILS, GET_SPECIFICALLY_EMAILS } from './constants';
 import {
@@ -16,10 +18,14 @@ import { makeSelectSpecificallyCompanyId } from './selectors';
 export function* emails() {
   const session = yield select(makeSelectSession());
   const user = yield select(makeSelectUser());
-  const companyId = user.company_id;
-  const requestURL = `${API_BASE_URL}${API_COMPANY_EMAILS}&session=${session}&company_id=${companyId}`;
+  const { role, company_id } = user;
+  const requestURL = `${API_BASE_URL}${API_COMPANY_EMAILS}&session=${session}&company_id=${company_id}`;
 
-  if (!session || !user || !companyId) {
+  if (role === 'admin') {
+    return yield put(push('/login'));
+  }
+
+  if (!session || !user || !company_id) {
     return yield put(getEmailsErrorAction('error'));
   }
 

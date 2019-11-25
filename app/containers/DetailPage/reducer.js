@@ -5,7 +5,16 @@
  */
 
 import produce from 'immer';
-import { GET_ISSUE, GET_ISSUE_SUCCESS, GET_ISSUE_ERROR } from './constants';
+import { LOCATION_CHANGE } from 'connected-react-router';
+import {
+  GET_ISSUE,
+  GET_ISSUE_SUCCESS,
+  GET_ISSUE_ERROR,
+  GET_SPECIFICALLY_ISSUE,
+  GET_SPECIFICALLY_ISSUE_SUCCESS,
+  GET_SPECIFICALLY_ISSUE_ERROR,
+} from './constants';
+import { LOGOUT } from '../App/constants';
 
 export const initialState = {
   isLoading: false,
@@ -46,9 +55,26 @@ const detailPageReducer = produce((draft, action) => {
       draft.isLoading = false;
       draft.issue = action.issue;
       break;
-    case GET_ISSUE_ERROR:
+    case GET_ISSUE_ERROR || GET_SPECIFICALLY_ISSUE_ERROR:
       draft.isLoading = false;
       draft.error = action.error;
+      break;
+    case GET_SPECIFICALLY_ISSUE:
+      draft.prepareIssueId = parseInt(action.issueId, 10);
+      draft.specificallyCompanyId = action.companyId;
+      break;
+    case GET_SPECIFICALLY_ISSUE_SUCCESS:
+      draft.specificallyIssue = action.issue;
+      draft.isLoading = false;
+      break;
+    case LOCATION_CHANGE:
+      if (draft.specificallyIssue) draft.specificallyIssue = {};
+      break;
+    case LOGOUT:
+      draft.isLoading = initialState.isLoading;
+      draft.error = initialState.error;
+      draft.prepareIssueId = initialState.prepareIssueId;
+      draft.issue = initialState.issue;
       break;
   }
 }, initialState);

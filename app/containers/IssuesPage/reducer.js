@@ -61,7 +61,7 @@ const issuesPageReducer = produce((draft, action) => {
       draft.isLoading = false;
       draft.transformIssues = action.transformIssues;
       break;
-    case GET_ISSUES_ERROR:
+    case GET_ISSUES_ERROR || GET_SPECIFICALLY_ISSUES_ERROR:
       draft.isLoading = false;
       draft.error = action.error;
       break;
@@ -75,10 +75,6 @@ const issuesPageReducer = produce((draft, action) => {
     case GET_TRANSFORM_SPECIFICALLY_ISSUES:
       draft.isLoading = false;
       draft.transformSpecificallyIssues = action.transformSpecificallyIssues;
-      break;
-    case GET_SPECIFICALLY_ISSUES_ERROR:
-      draft.isLoading = false;
-      draft.error = action.error;
       break;
     case LOCATION_CHANGE:
       if (draft.transformSpecificallyIssues)

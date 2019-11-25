@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
 import request from 'utils/request';
 import { API_BASE_URL, API_COMPANY_ISSUES } from 'utils/api';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import { GET_ISSUES, GET_SPECIFICALLY_ISSUES } from './constants';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
 import {
@@ -16,10 +18,14 @@ import { makeSelectSpecificallyCompanyId } from './selectors';
 export function* issues() {
   const session = yield select(makeSelectSession());
   const user = yield select(makeSelectUser());
-  const companyId = user.company_id;
-  const requestURL = `${API_BASE_URL}${API_COMPANY_ISSUES}&session=${session}&company_id=${companyId}`;
+  const { role, company_id } = user;
+  const requestURL = `${API_BASE_URL}${API_COMPANY_ISSUES}&session=${session}&company_id=${company_id}`;
 
-  if (!session || !user || !companyId) {
+  if (role === 'admin') {
+    return yield put(push('/login'));
+  }
+
+  if (!session || !user || !company_id) {
     return yield put(getIssuesErrorAction('error'));
   }
 
@@ -67,6 +73,7 @@ export function* specificallyIssues() {
 
     const transformSpecificallyIssues = response.issues.map(({ ...issue }) => ({
       key: issue.id,
+      company_id: parseInt(issue.company_id, 10),
       relevance: parseInt(issue.risk_level, 10),
       issue: issue.name,
       status: issue.solved,

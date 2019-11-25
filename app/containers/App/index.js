@@ -54,6 +54,7 @@ export default function App() {
               component={CompaniesListPage}
             />
             <Route
+              exact
               path={`/${COMPANIES_LIST}/:companyId/${ISSUES}`}
               component={IssuesPage}
             />
@@ -72,7 +73,6 @@ export default function App() {
 
             <Route exact path={`/${ISSUES}`} component={IssuesPage} />
             <Route path={`/${ISSUES}/:issueId`} component={DetailPage} />
-
             <Route exact path={`/${RESOURCES}`} component={ResourcesPage} />
             <Route exact path={`/${EMAIL_ADRESSES}`} component={EmailsPage} />
             <Route render={() => <Redirect to={`/${NOT_FOUND}`} />} />

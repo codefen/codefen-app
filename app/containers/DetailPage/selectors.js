@@ -39,9 +39,23 @@ const makeSelectPrepareIssueId = () =>
     detailPageState => detailPageState.prepareIssueId,
   );
 
+const makeSelectSpecificallyCompanyId = () =>
+  createSelector(
+    selectDetailPageDomain,
+    detailPageState => detailPageState.specificallyCompanyId,
+  );
+
+const makeSelectSpecificallyIssue = () =>
+  createSelector(
+    selectDetailPageDomain,
+    detailPageState => detailPageState.specificallyIssue,
+  );
+
 export {
   makeSelectIssue,
   makeSelectIsLoading,
   makeSelectError,
   makeSelectPrepareIssueId,
+  makeSelectSpecificallyCompanyId,
+  makeSelectSpecificallyIssue,
 };

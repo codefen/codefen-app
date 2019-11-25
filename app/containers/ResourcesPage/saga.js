@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
 import request from 'utils/request';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { API_BASE_URL, API_COMPANY_RESOURCES } from 'utils/api';
+import { push } from 'connected-react-router';
 import { GET_RESOURCES, GET_SPECIFICALLY_RESOURCES } from './constants';
 import { makeSelectSession, makeSelectUser } from '../App/selectors';
 import {
@@ -17,10 +19,14 @@ import { getTransformSpecificallyIssuesAction } from '../IssuesPage/actions';
 export function* resources() {
   const session = yield select(makeSelectSession());
   const user = yield select(makeSelectUser());
-  const companyId = user.company_id;
-  const requestURL = `${API_BASE_URL}${API_COMPANY_RESOURCES}&session=${session}&company_id=${companyId}`;
+  const { role, company_id } = user;
+  const requestURL = `${API_BASE_URL}${API_COMPANY_RESOURCES}&session=${session}&company_id=${company_id}`;
 
-  if (!session || !user || !companyId) {
+  if (role === 'admin') {
+    return yield put(push('/login'));
+  }
+
+  if (!session || !user || !company_id) {
     return yield put(getResourcesErrorAction('error'));
   }
 

@@ -23,7 +23,7 @@ import {
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import issueImage from 'images/header_issue.svg';
-import { ISSUES } from 'routes';
+import { ISSUES, COMPANIES_LIST } from 'routes';
 import messages from './messages';
 import {
   makeSelectIsLoading,
@@ -71,7 +71,15 @@ export default function IssuesPage({ match }) {
       dataIndex: 'issue',
       key: 'issue',
       render: (text, record) => (
-        <LinkWrapper to={`/${ISSUES}/${record.key}`}>{text}</LinkWrapper>
+        <LinkWrapper
+          to={
+            transformSpecificallyIssues
+              ? `/${COMPANIES_LIST}/${record.company_id}/${ISSUES}/${record.key}`
+              : `/${ISSUES}/${record.key}`
+          }
+        >
+          {text}
+        </LinkWrapper>
       ),
     },
     {

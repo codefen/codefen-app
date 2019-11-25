@@ -4,12 +4,16 @@
  *
  */
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Menu from 'components/App/Menu';
 import { logoutAction } from 'containers/App/actions';
-import { makeSelectLocation, makeSelectUser } from 'containers/App/selectors';
+import {
+  makeSelectLocation,
+  makeSelectUser,
+  makeSelectTransformCompaniesList,
+} from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
 import { ISSUES, RESOURCES, EMAIL_ADRESSES, COMPANIES_LIST } from 'routes';
 import issueImage from 'images/icon_issue.svg';
@@ -17,7 +21,6 @@ import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
 import Icon from './NavigationIcon';
 import NavigationCustomIcon from './NavigationCustomIcon';
-import { makeSelectTransformCompaniesList } from '../../../containers/CompaniesListPage/selectors';
 const { SubMenu } = Menu;
 
 const stateSelector = createStructuredSelector({
@@ -47,54 +50,69 @@ export default function Navigation() {
   };
 
   return (
-    <Menu
-      theme="light"
-      selectedKeys={handleSelected && handleSelected()}
-      mode="inline"
-      defaultOpenKeys={['sub1']}
-    >
+    <>
       {role === 'admin' ? (
-        <SubMenu
-          key="sub1"
-          title={
-            <>
-              <Icon type="monitor" />
-              <FormattedMessage {...messages.companiesList} />
-            </>
-          }
+        <Menu
+          theme="light"
+          selectedKeys={handleSelected && handleSelected()}
+          mode="inline"
+          defaultOpenKeys={['sub1']}
         >
-          {transformCompaniesList.map(company => (
-            <SubMenu key={company.key} title={company.name}>
-              <Menu.Item key="1">
-                <NavLinkWrapper to={ISSUES}>
-                  <Icon
-                    custom="true"
-                    component={() => <NavigationCustomIcon src={issueImage} />}
-                  />
-                  <FormattedMessage {...messages.foundIssues} />
-                </NavLinkWrapper>
-              </Menu.Item>
+          <SubMenu
+            key="sub1"
+            title={
+              <>
+                <Icon type="monitor" />
+                <FormattedMessage {...messages.companiesList} />
+              </>
+            }
+          >
+            {transformCompaniesList &&
+              transformCompaniesList.map(company => (
+                <SubMenu key={company.key} title={company.name}>
+                  <Menu.Item key="1">
+                    <NavLinkWrapper
+                      to={`/${COMPANIES_LIST}/${company.key}/${ISSUES}`}
+                    >
+                      <Icon
+                        custom="true"
+                        component={() => (
+                          <NavigationCustomIcon src={issueImage} />
+                        )}
+                      />
+                      <FormattedMessage {...messages.foundIssues} />
+                    </NavLinkWrapper>
+                  </Menu.Item>
 
-              <Menu.Item key="2">
-                <NavLinkWrapper to={RESOURCES}>
-                  <Icon type="global" />
-                  <FormattedMessage {...messages.resources} />
-                </NavLinkWrapper>
-              </Menu.Item>
+                  <Menu.Item key="2">
+                    <NavLinkWrapper
+                      to={`/${COMPANIES_LIST}/${company.key}/${RESOURCES}`}
+                    >
+                      <Icon type="global" />
+                      <FormattedMessage {...messages.resources} />
+                    </NavLinkWrapper>
+                  </Menu.Item>
 
-              <Menu.Item key="3">
-                <NavLinkWrapper to={EMAIL_ADRESSES}>
-                  <Icon type="mail" />
-                  <FormattedMessage {...messages.emailAddresses} />
-                </NavLinkWrapper>
-              </Menu.Item>
-            </SubMenu>
-          ))}
-        </SubMenu>
+                  <Menu.Item key="3">
+                    <NavLinkWrapper
+                      to={`/${COMPANIES_LIST}/${company.key}/${EMAIL_ADRESSES}`}
+                    >
+                      <Icon type="mail" />
+                      <FormattedMessage {...messages.emailAddresses} />
+                    </NavLinkWrapper>
+                  </Menu.Item>
+                </SubMenu>
+              ))}
+          </SubMenu>
+        </Menu>
       ) : (
-        <>
+        <Menu
+          theme="light"
+          selectedKeys={handleSelected && handleSelected()}
+          mode="inline"
+        >
           <Menu.Item key="1">
-            <NavLinkWrapper to={ISSUES}>
+            <NavLinkWrapper to={`/${ISSUES}`}>
               <Icon
                 custom="true"
                 component={() => <NavigationCustomIcon src={issueImage} />}
@@ -104,14 +122,14 @@ export default function Navigation() {
           </Menu.Item>
 
           <Menu.Item key="2">
-            <NavLinkWrapper to={RESOURCES}>
+            <NavLinkWrapper to={`/${RESOURCES}`}>
               <Icon type="global" />
               <FormattedMessage {...messages.resources} />
             </NavLinkWrapper>
           </Menu.Item>
 
           <Menu.Item key="3">
-            <NavLinkWrapper to={EMAIL_ADRESSES}>
+            <NavLinkWrapper to={`/${EMAIL_ADRESSES}`}>
               <Icon type="mail" />
               <FormattedMessage {...messages.emailAddresses} />
             </NavLinkWrapper>
@@ -121,8 +139,8 @@ export default function Navigation() {
             <Icon type="logout" />
             <FormattedMessage {...messages.disconnect} />
           </Menu.Item>
-        </>
+        </Menu>
       )}
-    </Menu>
+    </>
   );
 }

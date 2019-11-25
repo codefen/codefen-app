@@ -45,6 +45,12 @@ const makeSelectIsDrawer = () =>
     appState => appState.isDrawer,
   );
 
+const makeSelectTransformCompaniesList = () =>
+  createSelector(
+    selectAppDomain,
+    appState => appState.transformCompaniesList,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
@@ -59,4 +65,5 @@ export {
   makeSelectIsLogged,
   makeSelectUser,
   makeSelectCompany,
+  makeSelectTransformCompaniesList,
 };

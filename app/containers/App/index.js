@@ -44,17 +44,38 @@ export default function App() {
   return (
     <div>
       <Switch>
-        <Route exact path={HOME} component={HomePage} />
-        <Route exact path={LOGIN} component={LoginPage} />
+        <Route exact path={`/${HOME}`} component={HomePage} />
+        <Route exact path={`/${LOGIN}`} component={LoginPage} />
         <Layout>
           <Switch>
-            <Route exact path={COMPANIES_LIST} component={CompaniesListPage} />
-            <Route exact path={ISSUES} component={IssuesPage} />
-            <Route path={`${ISSUES}/:issueId`} component={DetailPage} />
+            <Route
+              exact
+              path={`/${COMPANIES_LIST}`}
+              component={CompaniesListPage}
+            />
+            <Route
+              path={`/${COMPANIES_LIST}/:companyId/${ISSUES}`}
+              component={IssuesPage}
+            />
+            <Route
+              path={`/${COMPANIES_LIST}/:companyId/${ISSUES}/:issueId`}
+              component={DetailPage}
+            />
+            <Route
+              path={`/${COMPANIES_LIST}/:companyId/${RESOURCES}`}
+              component={ResourcesPage}
+            />
+            <Route
+              path={`/${COMPANIES_LIST}/:companyId/${EMAIL_ADRESSES}`}
+              component={EmailsPage}
+            />
 
-            <Route exact path={RESOURCES} component={ResourcesPage} />
-            <Route exact path={EMAIL_ADRESSES} component={EmailsPage} />
-            <Route render={() => <Redirect to={NOT_FOUND} />} />
+            <Route exact path={`/${ISSUES}`} component={IssuesPage} />
+            <Route path={`/${ISSUES}/:issueId`} component={DetailPage} />
+
+            <Route exact path={`/${RESOURCES}`} component={ResourcesPage} />
+            <Route exact path={`/${EMAIL_ADRESSES}`} component={EmailsPage} />
+            <Route render={() => <Redirect to={`/${NOT_FOUND}`} />} />
           </Switch>
         </Layout>
 

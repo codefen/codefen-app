@@ -21,6 +21,12 @@ const makeSelectIssues = () =>
     issuesPageState => issuesPageState.issues,
   );
 
+const makeSelectSpecificallyCompanyId = () =>
+  createSelector(
+    selectIssuesPageDomain,
+    issuesPageState => issuesPageState.specificallyCompanyId,
+  );
+
 const makeSelectTransformIssues = () =>
   createSelector(
     selectIssuesPageDomain,
@@ -39,9 +45,17 @@ const makeSelectError = () =>
     issuesPageState => issuesPageState.error,
   );
 
+const makeSelectTransformSpecificallyIssues = () =>
+  createSelector(
+    selectIssuesPageDomain,
+    issuesPageState => issuesPageState.transformSpecificallyIssues,
+  );
+
 export {
   makeSelectIssues,
+  makeSelectSpecificallyCompanyId,
   makeSelectTransformIssues,
+  makeSelectTransformSpecificallyIssues,
   makeSelectIsLoading,
   makeSelectError,
 };

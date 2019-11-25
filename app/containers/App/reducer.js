@@ -8,6 +8,10 @@ import produce from 'immer';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
 import { GET_ISSUES_SUCCESS } from 'containers/IssuesPage/constants';
+import { GET_RESOURCES_SUCCESS } from 'containers/ResourcesPage/constants';
+import { GET_EMAILS_SUCCESS } from 'containers/EmailsPage/constants';
+import { GET_TRANSFORM_COMPANIES_LIST } from 'containers/CompaniesListPage/constants';
+
 import { TOGGLE_SIDEBAR, TOGGLE_DRAWER, LOGOUT } from './constants';
 
 export const initialState = {
@@ -65,8 +69,11 @@ const appReducer = produce((draft, action) => {
       draft.user = action.user;
       draft.isLogged = true;
       break;
-    case GET_ISSUES_SUCCESS:
+    case GET_ISSUES_SUCCESS || GET_RESOURCES_SUCCESS || GET_EMAILS_SUCCESS:
       draft.company = action.company;
+      break;
+    case GET_TRANSFORM_COMPANIES_LIST:
+      draft.transformCompaniesList = action.transformCompaniesList;
       break;
     case TOGGLE_SIDEBAR:
       draft.isCollapsed = !draft.isCollapsed;

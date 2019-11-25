@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Progress from 'components/App/Progress';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -28,10 +29,11 @@ import {
   makeSelectIsLoading,
   makeSelectError,
   makeSelectTransformIssues,
+  makeSelectTransformSpecificallyIssues,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { getIssuesAction } from './actions';
+import { getIssuesAction, getSpecificallyIssuesAction } from './actions';
 import TableWrapper from '../../components/App/Table';
 import LinkWrapper from '../../components/App/Link';
 
@@ -39,15 +41,23 @@ const stateSelector = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   error: makeSelectError(),
   transformIssues: makeSelectTransformIssues(),
+  transformSpecificallyIssues: makeSelectTransformSpecificallyIssues(),
 });
 
-export default function IssuesPage() {
+export default function IssuesPage({ match }) {
   useInjectReducer({ key: 'issuesPage', reducer });
   useInjectSaga({ key: 'issuesPage', saga });
 
-  const { isLoading, transformIssues } = useSelector(stateSelector);
+  const {
+    isLoading,
+    transformIssues,
+    transformSpecificallyIssues,
+  } = useSelector(stateSelector);
+  const { params } = match;
   const dispatch = useDispatch();
   const handleIssues = () => dispatch(getIssuesAction());
+  const handleSpecificallyIssues = companyId =>
+    dispatch(getSpecificallyIssuesAction(companyId));
 
   const issuesColumns = [
     {
@@ -61,7 +71,7 @@ export default function IssuesPage() {
       dataIndex: 'issue',
       key: 'issue',
       render: (text, record) => (
-        <LinkWrapper to={`${ISSUES}/${record.key}`}>{text}</LinkWrapper>
+        <LinkWrapper to={`/${ISSUES}/${record.key}`}>{text}</LinkWrapper>
       ),
     },
     {
@@ -81,8 +91,9 @@ export default function IssuesPage() {
   ];
 
   useEffect(() => {
-    if (!transformIssues.length) handleIssues();
-  }, [transformIssues]);
+    if (!transformIssues.length && !params.companyId) handleIssues();
+    if (params.companyId) handleSpecificallyIssues(params.companyId);
+  }, [transformIssues, params.companyId]);
 
   return (
     <>
@@ -103,7 +114,9 @@ export default function IssuesPage() {
       <TableWrapper
         issues={issuesColumns}
         columns={issuesColumns}
-        dataSource={!isLoading ? transformIssues : null}
+        dataSource={
+          !isLoading ? transformSpecificallyIssues || transformIssues : null
+        }
       />
 
       <PageFooter>
@@ -112,3 +125,11 @@ export default function IssuesPage() {
     </>
   );
 }
+
+IssuesPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      companyId: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
+};

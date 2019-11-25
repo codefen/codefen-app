@@ -6,11 +6,16 @@
 
 import produce from 'immer';
 import { LOGOUT } from 'containers/App/constants';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import {
   GET_ISSUES,
+  GET_SPECIFICALLY_ISSUES,
   GET_ISSUES_SUCCESS,
   GET_ISSUES_ERROR,
   GET_TRANSFORM_ISSUES,
+  GET_SPECIFICALLY_ISSUES_SUCCESS,
+  GET_SPECIFICALLY_ISSUES_ERROR,
+  GET_TRANSFORM_SPECIFICALLY_ISSUES,
 } from './constants';
 
 export const initialState = {
@@ -38,6 +43,7 @@ export const initialState = {
     eliminado: '',
     creacion: '',
   },
+  specificallyIssues: {},
   transformIssues: [],
 };
 
@@ -51,16 +57,37 @@ const issuesPageReducer = produce((draft, action) => {
       draft.isLoading = false;
       draft.issues = action.issues;
       break;
-    case GET_ISSUES_ERROR:
-      draft.isLoading = false;
-      draft.error = action.error;
-      break;
     case GET_TRANSFORM_ISSUES:
       draft.isLoading = false;
       draft.transformIssues = action.transformIssues;
       break;
+    case GET_ISSUES_ERROR:
+      draft.isLoading = false;
+      draft.error = action.error;
+      break;
+    case GET_SPECIFICALLY_ISSUES:
+      draft.specificallyCompanyId = action.companyId;
+      break;
+    case GET_SPECIFICALLY_ISSUES_SUCCESS:
+      draft.specificallyIssues = action.issues;
+      draft.isLoading = false;
+      break;
+    case GET_TRANSFORM_SPECIFICALLY_ISSUES:
+      draft.isLoading = false;
+      draft.transformSpecificallyIssues = action.transformSpecificallyIssues;
+      break;
+    case GET_SPECIFICALLY_ISSUES_ERROR:
+      draft.isLoading = false;
+      draft.error = action.error;
+      break;
+    case LOCATION_CHANGE:
+      if (draft.transformSpecificallyIssues)
+        draft.transformSpecificallyIssues = [];
+      break;
     case LOGOUT:
       draft.transformIssues = initialState.transformIssues;
+      draft.transformSpecificallyIssues =
+        initialState.transformSpecificallyIssues;
       draft.issue = initialState.issue;
       draft.error = initialState.error;
       draft.isLoading = initialState.isLoading;

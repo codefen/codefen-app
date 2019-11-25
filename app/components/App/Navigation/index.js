@@ -17,16 +17,20 @@ import NavLinkWrapper from '../../NavLink';
 import messages from './messages';
 import Icon from './NavigationIcon';
 import NavigationCustomIcon from './NavigationCustomIcon';
+import { makeSelectTransformCompaniesList } from '../../../containers/CompaniesListPage/selectors';
+const { SubMenu } = Menu;
 
 const stateSelector = createStructuredSelector({
   location: makeSelectLocation(),
   user: makeSelectUser(),
+  transformCompaniesList: makeSelectTransformCompaniesList(),
 });
 
 export default function Navigation() {
   const {
     location: { pathname },
     user: { role },
+    transformCompaniesList,
   } = useSelector(stateSelector);
 
   const dispatch = useDispatch();
@@ -47,44 +51,78 @@ export default function Navigation() {
       theme="light"
       selectedKeys={handleSelected && handleSelected()}
       mode="inline"
+      defaultOpenKeys={['sub1']}
     >
-      {role === 'admin' && (
-        <Menu.Item key="0">
-          <NavLinkWrapper to={COMPANIES_LIST}>
-            <Icon type="monitor" />
-            <FormattedMessage {...messages.companiesList} />
-          </NavLinkWrapper>
-        </Menu.Item>
+      {role === 'admin' ? (
+        <SubMenu
+          key="sub1"
+          title={
+            <>
+              <Icon type="monitor" />
+              <FormattedMessage {...messages.companiesList} />
+            </>
+          }
+        >
+          {transformCompaniesList.map(company => (
+            <SubMenu key={company.key} title={company.name}>
+              <Menu.Item key="1">
+                <NavLinkWrapper to={ISSUES}>
+                  <Icon
+                    custom="true"
+                    component={() => <NavigationCustomIcon src={issueImage} />}
+                  />
+                  <FormattedMessage {...messages.foundIssues} />
+                </NavLinkWrapper>
+              </Menu.Item>
+
+              <Menu.Item key="2">
+                <NavLinkWrapper to={RESOURCES}>
+                  <Icon type="global" />
+                  <FormattedMessage {...messages.resources} />
+                </NavLinkWrapper>
+              </Menu.Item>
+
+              <Menu.Item key="3">
+                <NavLinkWrapper to={EMAIL_ADRESSES}>
+                  <Icon type="mail" />
+                  <FormattedMessage {...messages.emailAddresses} />
+                </NavLinkWrapper>
+              </Menu.Item>
+            </SubMenu>
+          ))}
+        </SubMenu>
+      ) : (
+        <>
+          <Menu.Item key="1">
+            <NavLinkWrapper to={ISSUES}>
+              <Icon
+                custom="true"
+                component={() => <NavigationCustomIcon src={issueImage} />}
+              />
+              <FormattedMessage {...messages.foundIssues} />
+            </NavLinkWrapper>
+          </Menu.Item>
+
+          <Menu.Item key="2">
+            <NavLinkWrapper to={RESOURCES}>
+              <Icon type="global" />
+              <FormattedMessage {...messages.resources} />
+            </NavLinkWrapper>
+          </Menu.Item>
+
+          <Menu.Item key="3">
+            <NavLinkWrapper to={EMAIL_ADRESSES}>
+              <Icon type="mail" />
+              <FormattedMessage {...messages.emailAddresses} />
+            </NavLinkWrapper>
+          </Menu.Item>
+
+          <Menu.Item key="4" onClick={handleLogout}>
+            <Icon type="logout" />
+            <FormattedMessage {...messages.disconnect} />
+          </Menu.Item>
+        </>
       )}
-
-      <Menu.Item key="1">
-        <NavLinkWrapper to={ISSUES}>
-          <Icon
-            custom="true"
-            component={() => <NavigationCustomIcon src={issueImage} />}
-          />
-          <FormattedMessage {...messages.foundIssues} />
-        </NavLinkWrapper>
-      </Menu.Item>
-
-      <Menu.Item key="2">
-        <NavLinkWrapper to={RESOURCES}>
-          <Icon type="global" />
-          <FormattedMessage {...messages.resources} />
-        </NavLinkWrapper>
-      </Menu.Item>
-
-      <Menu.Item key="3">
-        <NavLinkWrapper to={EMAIL_ADRESSES}>
-          <Icon type="mail" />
-          <FormattedMessage {...messages.emailAddresses} />
-        </NavLinkWrapper>
-      </Menu.Item>
-
-      <Menu.Item key="4" onClick={handleLogout}>
-        <Icon type="logout" />
-        <FormattedMessage {...messages.disconnect} />
-      </Menu.Item>
     </Menu>
   );
 }

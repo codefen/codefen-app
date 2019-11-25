@@ -75,7 +75,7 @@ export default function CompaniesListPage() {
       dataIndex: 'name',
       key: 'name',
       render: (text, record) => (
-        <CompanyTableWrapper name>
+        <CompanyTableWrapper name="true">
           <CompanyLogoWrapper
             mobile
             src={`https://codefen.com/main/media/profiles/${transformCompaniesList[record.key - 1].profile_media}`}

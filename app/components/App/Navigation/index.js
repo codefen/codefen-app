@@ -4,7 +4,7 @@
  *
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Menu from 'components/App/Menu';
@@ -52,12 +52,7 @@ export default function Navigation() {
   return (
     <>
       {role === 'admin' ? (
-        <Menu
-          theme="light"
-          selectedKeys={handleSelected && handleSelected()}
-          mode="inline"
-          defaultOpenKeys={['sub1']}
-        >
+        <Menu theme="light" mode="inline" defaultOpenKeys={['sub1']}>
           <SubMenu
             key="sub1"
             title={
@@ -70,7 +65,7 @@ export default function Navigation() {
             {transformCompaniesList &&
               transformCompaniesList.map(company => (
                 <SubMenu key={company.key} title={company.name}>
-                  <Menu.Item key="1">
+                  <Menu.Item key={company.key + 1}>
                     <NavLinkWrapper
                       to={`/${COMPANIES_LIST}/${company.key}/${ISSUES}`}
                     >
@@ -84,7 +79,7 @@ export default function Navigation() {
                     </NavLinkWrapper>
                   </Menu.Item>
 
-                  <Menu.Item key="2">
+                  <Menu.Item key={company.key + 2}>
                     <NavLinkWrapper
                       to={`/${COMPANIES_LIST}/${company.key}/${RESOURCES}`}
                     >
@@ -93,7 +88,7 @@ export default function Navigation() {
                     </NavLinkWrapper>
                   </Menu.Item>
 
-                  <Menu.Item key="3">
+                  <Menu.Item key={company.key + 3}>
                     <NavLinkWrapper
                       to={`/${COMPANIES_LIST}/${company.key}/${EMAIL_ADRESSES}`}
                     >

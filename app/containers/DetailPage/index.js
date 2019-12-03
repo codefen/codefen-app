@@ -5,8 +5,8 @@
  */
 
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
@@ -27,22 +27,20 @@ const stateSelector = createStructuredSelector({
   specificallyIssue: makeSelectSpecificallyIssue(),
 });
 
-export default function DetailPage({ match }) {
-  useInjectReducer({ key: 'detailPage', reducer });
-  useInjectSaga({ key: 'detailPage', saga });
-
+export default function DetailPage() {
+  const { issueId, companyId } = useParams();
   const { issue, specificallyIssue } = useSelector(stateSelector);
   const dispatch = useDispatch();
-  const handleIssue = () => dispatch(getIssueAction(match.params.issueId));
+  const handleIssue = () => dispatch(getIssueAction(issueId));
   const handleSpecificallyIssue = () =>
-    dispatch(
-      getSpecificallyIssueAction(match.params.issueId, match.params.companyId),
-    );
+    dispatch(getSpecificallyIssueAction(issueId, companyId));
 
+  useInjectReducer({ key: 'detailPage', reducer });
+  useInjectSaga({ key: 'detailPage', saga });
   useEffect(() => {
-    if (!match.params.companyId) handleIssue();
-    if (match.params.companyId) handleSpecificallyIssue();
-  }, [match.params.companyId]);
+    if (!companyId) handleIssue();
+    if (companyId) handleSpecificallyIssue();
+  }, [companyId]);
 
   return (specificallyIssue && specificallyIssue[0]) || issue[0] ? (
     <>
@@ -92,12 +90,3 @@ export default function DetailPage({ match }) {
     </>
   ) : null;
 }
-
-DetailPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      issueId: PropTypes.node,
-      companyId: PropTypes.node,
-    }).isRequired,
-  }).isRequired,
-};

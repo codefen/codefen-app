@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import Progress from 'components/App/Progress';
 import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
@@ -43,21 +43,17 @@ const stateSelector = createStructuredSelector({
   transformSpecificallyIssues: makeSelectTransformSpecificallyIssues(),
 });
 
-export default function IssuesPage({ match }) {
-  useInjectReducer({ key: 'issuesPage', reducer });
-  useInjectSaga({ key: 'issuesPage', saga });
-
+export default function IssuesPage() {
   const {
     isLoading,
     transformIssues,
     transformSpecificallyIssues,
   } = useSelector(stateSelector);
-  const { params } = match;
+  const { companyId } = useParams();
   const dispatch = useDispatch();
   const handleIssues = () => dispatch(getIssuesAction());
-  const handleSpecificallyIssues = companyId =>
-    dispatch(getSpecificallyIssuesAction(companyId));
-
+  const handleSpecificallyIssues = id =>
+    dispatch(getSpecificallyIssuesAction(id));
   const issuesColumns = [
     {
       title: <FormattedMessage {...messages.relevance} />,
@@ -97,10 +93,12 @@ export default function IssuesPage({ match }) {
     },
   ];
 
+  useInjectReducer({ key: 'issuesPage', reducer });
+  useInjectSaga({ key: 'issuesPage', saga });
   useEffect(() => {
-    if (!transformIssues.length && !params.companyId) handleIssues();
-    if (params.companyId) handleSpecificallyIssues(params.companyId);
-  }, [transformIssues, params.companyId]);
+    if (!transformIssues.length && !companyId) handleIssues();
+    if (companyId) handleSpecificallyIssues(companyId);
+  }, [transformIssues, companyId]);
 
   return (
     <>
@@ -132,11 +130,3 @@ export default function IssuesPage({ match }) {
     </>
   );
 }
-
-IssuesPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      companyId: PropTypes.node,
-    }).isRequired,
-  }).isRequired,
-};

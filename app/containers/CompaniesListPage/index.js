@@ -17,8 +17,6 @@ import {
   PageHeaderTypography,
   PageHeaderAction,
   PageHeaderIcon,
-  PageFooter,
-  ResearcherWrapper,
 } from 'components/App/Page';
 import issueImage from 'images/header_issue.svg';
 import greyImage from 'images/grey_issue.svg';
@@ -26,7 +24,6 @@ import greyImage from 'images/grey_issue.svg';
 import { checkAdminLoggedAction } from 'containers/App/actions';
 import {
   makeSelectCompaniesList,
-  makeSelectError,
   makeSelectIsLoading,
   makeSelectTransformCompaniesList,
 } from './selectors';
@@ -78,9 +75,7 @@ export default function CompaniesListPage() {
         <CompanyTableWrapper name="true">
           <CompanyLogoWrapper
             mobile
-            src={`https://codefen.com/main/media/profiles/${
-              transformCompaniesList[record.key - 1].profile_media
-            }`}
+            src={`https://codefen.com/main/media/profiles/${transformCompaniesList[record.key - 1].profile_media}`}
           />
           <div>
             <CompanyNameWrapper header>{text}</CompanyNameWrapper>

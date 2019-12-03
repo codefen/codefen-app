@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,7 +32,7 @@ import {
 } from '../../components/App/Page';
 import TableWrapper from '../../components/App/Table';
 
-export const resourcesColumns = [
+const resourcesColumns = [
   {
     title: <Icon type="global" />,
     dataIndex: 'global_icon',
@@ -69,11 +69,8 @@ const stateSelector = createStructuredSelector({
   transformSpecificallyResources: makeSelectTransformSpecificallyResources(),
 });
 
-export default function ResourcesPage({ match }) {
-  useInjectReducer({ key: 'resourcesPage', reducer });
-  useInjectSaga({ key: 'resourcesPage', saga });
-
-  const { params } = match;
+export default function ResourcesPage() {
+  const { companyId } = useParams();
   const {
     isLoading,
     transformResources,
@@ -81,13 +78,15 @@ export default function ResourcesPage({ match }) {
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const handleResources = () => dispatch(getResourcesAction());
-  const handleSpecificallyResources = companyId =>
-    dispatch(getSpecificallyResourcesAction(companyId));
+  const handleSpecificallyResources = id =>
+    dispatch(getSpecificallyResourcesAction(id));
 
+  useInjectReducer({ key: 'resourcesPage', reducer });
+  useInjectSaga({ key: 'resourcesPage', saga });
   useEffect(() => {
-    if (!transformResources.length && !params.companyId) handleResources();
-    if (params.companyId) handleSpecificallyResources(params.companyId);
-  }, [transformResources, params.companyId]);
+    if (!transformResources.length && !companyId) handleResources();
+    if (companyId) handleSpecificallyResources(companyId);
+  }, [transformResources, companyId]);
 
   return (
     <>
@@ -117,11 +116,3 @@ export default function ResourcesPage({ match }) {
     </>
   );
 }
-
-ResourcesPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      companyId: PropTypes.node,
-    }).isRequired,
-  }).isRequired,
-};

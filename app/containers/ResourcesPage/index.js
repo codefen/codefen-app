@@ -6,14 +6,13 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import issueImage from 'images/header_issue.svg';
 import { Icon } from 'antd';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import {
   makeSelectIsLoading,
   makeSelectTransformResources,

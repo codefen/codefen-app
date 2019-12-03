@@ -9,10 +9,9 @@
 
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 
 // Import Utils
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
 import reducer from 'containers/App/reducer';
 import saga from 'containers/App/saga';
 import {
@@ -24,6 +23,7 @@ import {
   EMAIL_ADRESSES,
   NOT_FOUND,
 } from 'routes';
+import { hot } from 'react-hot-loader/root';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import CompaniesListPage from 'containers/CompaniesListPage/Loadable';
@@ -37,7 +37,7 @@ import Layout from 'components/App/Layout';
 import 'antd/dist/antd.css';
 import GlobalStyle from 'global-styles';
 
-export default function App() {
+function App() {
   useInjectReducer({ key: 'app', reducer });
   useInjectSaga({ key: 'app', saga });
 
@@ -85,3 +85,5 @@ export default function App() {
     </div>
   );
 }
+
+export default hot(App);

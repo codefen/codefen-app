@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 // Import Components
@@ -15,8 +15,7 @@ import LoginContainer from 'components/LoginContainer';
 import LoginAside from 'components/LoginAside';
 
 // Import Utils
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 
 import { checkUserLoggedAction } from 'containers/App/actions';
 import messages from './messages';

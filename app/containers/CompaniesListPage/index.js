@@ -5,12 +5,12 @@
  */
 
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+
 import {
   PageHeader,
   PageHeaderImage,
@@ -78,7 +78,9 @@ export default function CompaniesListPage() {
         <CompanyTableWrapper name="true">
           <CompanyLogoWrapper
             mobile
-            src={`https://codefen.com/main/media/profiles/${transformCompaniesList[record.key - 1].profile_media}`}
+            src={`https://codefen.com/main/media/profiles/${
+              transformCompaniesList[record.key - 1].profile_media
+            }`}
           />
           <div>
             <CompanyNameWrapper header>{text}</CompanyNameWrapper>

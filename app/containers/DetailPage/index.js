@@ -9,9 +9,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import {
   DetailHeaderWrapper,
   DetailSubheaderWrapper,

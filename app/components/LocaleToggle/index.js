@@ -14,7 +14,7 @@ import { changeLocale } from 'containers/LanguageProvider/actions';
 import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import Wrapper from './Wrapper';
 import messages from './messages';
-import { appLocales } from '../../i18n';
+import { appLocales } from '../../locales';
 
 export function LocaleToggle(props) {
   return (
@@ -34,12 +34,9 @@ LocaleToggle.propTypes = {
   locale: PropTypes.string,
 };
 
-const mapStateToProps = createSelector(
-  makeSelectLocale(),
-  locale => ({
-    locale,
-  }),
-);
+const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
+  locale,
+}));
 
 export function mapDispatchToProps(dispatch) {
   return {
@@ -48,7 +45,4 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LocaleToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(LocaleToggle);

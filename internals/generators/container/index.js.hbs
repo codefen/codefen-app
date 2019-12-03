@@ -1,8 +1,8 @@
 /**
- *
- * {{properCase name }}
- *
- */
+*
+* {{properCase name }}
+*
+*/
 
 {{#if memo}}
 import React, { memo } from 'react';
@@ -11,7 +11,7 @@ import React from 'react';
 {{/if}}
 // import PropTypes from 'prop-types';
 {{#if wantHeaders}}
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -21,16 +21,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 {{/if}}
 
-{{#if wantSaga}}
-import { useInjectSaga } from 'utils/injectSaga';
-{{/if}}
 {{#if wantActionsAndReducer}}
-import { useInjectReducer } from 'utils/injectReducer';
-import makeSelect{{properCase name}} from './selectors';
-import reducer from './reducer';
-{{/if}}
 {{#if wantSaga}}
-import saga from './saga';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+{{else}}
+import { useInjectReducer } from 'redux-injectors';
+{{/if}}
+{{else}}
+{{#if wantSaga}}
+import { useInjectSaga } from 'redux-injectors';
 {{/if}}
 {{#if wantMessages}}
 import messages from './messages';
@@ -38,38 +37,38 @@ import messages from './messages';
 
 {{#if wantActionsAndReducer}}
 const stateSelector = createStructuredSelector({
-  {{camelCase name}}: makeSelect{{properCase name}}(),
+{{camelCase name}}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
 function {{ properCase name }}() {
-  {{#if wantActionsAndReducer}}
-  useInjectReducer({ key: '{{ camelCase name }}', reducer });
-  {{/if}}
-  {{#if wantSaga}}
-  useInjectSaga({ key: '{{ camelCase name }}', saga });
-  {{/if}}
-  {{#if wantActionsAndReducer}}
+{{#if wantActionsAndReducer}}
+useInjectReducer({ key: '{{ camelCase name }}', reducer });
+{{/if}}
+{{#if wantSaga}}
+useInjectSaga({ key: '{{ camelCase name }}', saga });
+{{/if}}
+{{#if wantActionsAndReducer}}
 
-  /* eslint-disable no-unused-vars */
-  const { {{camelCase name}} } = useSelector(stateSelector);
-  const dispatch = useDispatch();
-  /* eslint-enable no-unused-vars */
-  {{/if}}
+/* eslint-disable no-unused-vars */
+const { {{camelCase name}} } = useSelector(stateSelector);
+const dispatch = useDispatch();
+/* eslint-enable no-unused-vars */
+{{/if}}
 
-  return (
-    <div>
-    {{#if wantHeaders}}
-      <Helmet>
-        <title>{{properCase name}}</title>
-        <meta name="description" content="Description of {{properCase name}}" />
-      </Helmet>
-    {{/if}}
-    {{#if wantMessages}}
-      <FormattedMessage {...messages.header} />
-    {{/if}}
-    </div>
-  );
+return (
+<div>
+  {{#if wantHeaders}}
+  <Helmet>
+    <title>{{properCase name}}</title>
+    <meta name="description" content="Description of {{properCase name}}" />
+  </Helmet>
+  {{/if}}
+  {{#if wantMessages}}
+  <FormattedMessage {...messages.header} />
+  {{/if}}
+</div>
+);
 }
 
 {{ properCase name }}.propTypes = {};

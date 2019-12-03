@@ -118,6 +118,7 @@ module.exports = options => ({
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
     alias: {
+      'react-dom': '@hot-loader/react-dom',
       moment$: 'moment/moment.js',
     },
   },

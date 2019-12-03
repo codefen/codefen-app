@@ -50,11 +50,17 @@ module.exports = {
         path: '../../app',
         file: 'app.js',
       });
+
+      actions.push({
+        type: 'backup',
+        path: '../../app',
+        file: 'locales.js',
+      });
     }
 
     actions.push({
       type: 'modify',
-      path: '../../app/i18n.js',
+      path: '../../app/locales.js',
       pattern: /(const ..LocaleData = require\('react-intl\/locale-data\/..'\);\n)+/g,
       templateFile: './language/intl-locale-data.hbs',
     });

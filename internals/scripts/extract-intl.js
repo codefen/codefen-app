@@ -14,7 +14,7 @@ const get = require('lodash/get');
 const animateProgress = require('./helpers/progress');
 const addCheckmark = require('./helpers/checkmark');
 
-const { appLocales, DEFAULT_LOCALE } = require('../../app/i18n');
+const { appLocales, DEFAULT_LOCALE } = require('../../app/locales');
 
 const babel = require('../../babel.config.js');
 const { presets } = babel;
@@ -48,18 +48,15 @@ const task = message => {
 // Wrap async functions below into a promise
 const glob = pattern =>
   new Promise((resolve, reject) => {
-    nodeGlob(
-      pattern,
-      (error, value) => (error ? reject(error) : resolve(value)),
+    nodeGlob(pattern, (error, value) =>
+      error ? reject(error) : resolve(value),
     );
   });
 
 const readFile = fileName =>
   new Promise((resolve, reject) => {
-    fs.readFile(
-      fileName,
-      'utf8',
-      (error, value) => (error ? reject(error) : resolve(value)),
+    fs.readFile(fileName, 'utf8', (error, value) =>
+      error ? reject(error) : resolve(value),
     );
   });
 
@@ -84,7 +81,7 @@ for (const locale of appLocales) {
     if (error.code !== 'ENOENT') {
       process.stderr.write(
         `There was an error loading this translation file: ${translationFileName}
-        \n${error}`,
+         \n${error}`,
       );
     }
   }
@@ -125,7 +122,7 @@ memoryTask.then(files => {
     extractTaskDone();
 
     // Make the directory if it doesn't exist, especially for first run
-    mkdir('-p', 'app/translations'); // eslint-disable-line
+     mkdir('-p', 'app/translations'); // eslint-disable-line
 
     let localeTaskDone;
     let translationFileName;
@@ -154,7 +151,7 @@ memoryTask.then(files => {
       } catch (error) {
         localeTaskDone(
           `There was an error saving this translation file: ${translationFileName}
-          \n${error}`,
+           \n${error}`,
         );
       }
     }

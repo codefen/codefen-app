@@ -14,12 +14,12 @@ const rimraf = require('rimraf');
 const shell = require('shelljs');
 
 const addCheckmark = require('./helpers/checkmark');
-const xmark = require('./helpers/xmark');
+const addXmark = require('./helpers/xmark');
 
 /**
- * Every generated component/container is preceded by this
- * @type {string}
- */
+  * Every generated component/container is preceded by this
+  * @type {string}
+  */
 const { BACKUPFILE_EXTENSION } = require('../generators/index');
 
 process.chdir(path.join(__dirname, '../generators'));
@@ -30,26 +30,26 @@ const containerGen = plop.getGenerator('container');
 const languageGen = plop.getGenerator('language');
 
 /**
- * Every generated component/container is preceded by this
- * @type {string}
- */
+  * Every generated component/container is preceded by this
+  * @type {string}
+  */
 const NAMESPACE = 'RbGenerated';
 
 /**
- * Return a prettified string
- * @param {*} data
- * @returns {string}
- */
+  * Return a prettified string
+  * @param {*} data
+  * @returns {string}
+  */
 function prettyStringify(data) {
   return JSON.stringify(data, null, 2);
 }
 
 /**
- * Handle results from Plop
- * @param {array} changes
- * @param {array} failures
- * @returns {Promise<*>}
- */
+  * Handle results from Plop
+  * @param {array} changes
+  * @param {array} failures
+  * @returns {Promise<*>}
+  */
 function handleResult({ changes, failures }) {
   return new Promise((resolve, reject) => {
     if (Array.isArray(failures) && failures.length > 0) {
@@ -61,10 +61,10 @@ function handleResult({ changes, failures }) {
 }
 
 /**
- * Feedback to user
- * @param {string} info
- * @returns {Function}
- */
+  * Feedback to user
+  * @param {string} info
+  * @returns {Function}
+  */
 function feedbackToUser(info) {
   return result => {
     console.info(chalk.blue(info));
@@ -73,10 +73,10 @@ function feedbackToUser(info) {
 }
 
 /**
- * Report success
- * @param {string} message
- * @returns {Function}
- */
+  * Report success
+  * @param {string} message
+  * @returns {Function}
+  */
 function reportSuccess(message) {
   return result => {
     addCheckmark(() => console.log(chalk.green(` ${message}`)));
@@ -85,21 +85,21 @@ function reportSuccess(message) {
 }
 
 /**
- * Report errors
- * @param {string} reason
- * @returns {Function}
- */
+  * Report errors
+  * @param {string} reason
+  * @returns {Function}
+  */
 function reportErrors(reason) {
   // TODO Replace with our own helpers/log that is guaranteed to be blocking?
-  xmark(() => console.error(chalk.red(` ${reason}`)));
+  addXmark(() => console.error(chalk.red(` ${reason}`)));
   process.exit(1);
 }
 
 /**
- * Run eslint on all js files in the given directory
- * @param {string} relativePath
- * @returns {Promise<string>}
- */
+  * Run eslint on all js files in the given directory
+  * @param {string} relativePath
+  * @returns {Promise<string>}
+  */
 function runLintingOnDirectory(relativePath) {
   return new Promise((resolve, reject) => {
     shell.exec(
@@ -116,10 +116,10 @@ function runLintingOnDirectory(relativePath) {
 }
 
 /**
- * Run eslint on the given file
- * @param {string} filePath
- * @returns {Promise<string>}
- */
+  * Run eslint on the given file
+  * @param {string} filePath
+  * @returns {Promise<string>}
+  */
 function runLintingOnFile(filePath) {
   return new Promise((resolve, reject) => {
     shell.exec(
@@ -139,10 +139,10 @@ function runLintingOnFile(filePath) {
 }
 
 /**
- * Remove a directory
- * @param {string} relativePath
- * @returns {Promise<any>}
- */
+  * Remove a directory
+  * @param {string} relativePath
+  * @returns {Promise<any>}
+  */
 function removeDir(relativePath) {
   return new Promise((resolve, reject) => {
     try {
@@ -157,10 +157,10 @@ function removeDir(relativePath) {
 }
 
 /**
- * Remove a given file
- * @param {string} filePath
- * @returns {Promise<any>}
- */
+  * Remove a given file
+  * @param {string} filePath
+  * @returns {Promise<any>}
+  */
 function removeFile(filePath) {
   return new Promise((resolve, reject) => {
     try {
@@ -175,11 +175,11 @@ function removeFile(filePath) {
 }
 
 /**
- * Overwrite file from copy
- * @param {string} filePath
- * @param {string} [backupFileExtension=BACKUPFILE_EXTENSION]
- * @returns {Promise<*>}
- */
+  * Overwrite file from copy
+  * @param {string} filePath
+  * @param {string} [backupFileExtension=BACKUPFILE_EXTENSION]
+  * @returns {Promise<*>}
+  */
 async function restoreModifiedFile(
   filePath,
   backupFileExtension = BACKUPFILE_EXTENSION,
@@ -198,11 +198,11 @@ async function restoreModifiedFile(
 }
 
 /**
- * Test the component generator and rollback when successful
- * @param {string} name - Component name
- * @param {string} type - Plop Action type
- * @returns {Promise<string>} - Relative path to the generated component
- */
+  * Test the component generator and rollback when successful
+  * @param {string} name - Component name
+  * @param {string} type - Plop Action type
+  * @returns {Promise<string>} - Relative path to the generated component
+  */
 async function generateComponent({ name, memo }) {
   const targetFolder = 'components';
   const componentName = `${NAMESPACE}Component${name}`;
@@ -230,11 +230,11 @@ async function generateComponent({ name, memo }) {
 }
 
 /**
- * Test the container generator and rollback when successful
- * @param {string} name - Container name
- * @param {string} type - Plop Action type
- * @returns {Promise<string>} - Relative path to the generated container
- */
+  * Test the container generator and rollback when successful
+  * @param {string} name - Container name
+  * @param {string} type - Plop Action type
+  * @returns {Promise<string>} - Relative path to the generated container
+  */
 async function generateContainer({ name, memo }) {
   const targetFolder = 'containers';
   const componentName = `${NAMESPACE}Container${name}`;
@@ -265,10 +265,10 @@ async function generateContainer({ name, memo }) {
 }
 
 /**
- * Generate components
- * @param {array} components
- * @returns {Promise<[string]>}
- */
+  * Generate components
+  * @param {array} components
+  * @returns {Promise<[string]>}
+  */
 async function generateComponents(components) {
   const promises = components.map(async component => {
     let result;
@@ -288,10 +288,10 @@ async function generateComponents(components) {
 }
 
 /**
- * Test the language generator and rollback when successful
- * @param {string} language
- * @returns {Promise<*>}
- */
+  * Test the language generator and rollback when successful
+  * @param {string} language
+  * @returns {Promise<*>}
+  */
 async function generateLanguage(language) {
   // Run generator
   const generatedFiles = await languageGen
@@ -317,7 +317,7 @@ async function generateLanguage(language) {
     .filter(
       filePath =>
         generatedFiles[filePath] === 'modify' ||
-        generatedFiles[filePath] === 'add',
+         generatedFiles[filePath] === 'add',
     )
     .filter(filePath => filePath.endsWith('.js'))
     .map(async filePath => {
@@ -355,7 +355,7 @@ async function generateLanguage(language) {
     .filter(
       filePath =>
         generatedFiles[filePath] === 'backup' ||
-        generatedFiles[filePath] === 'add',
+         generatedFiles[filePath] === 'add',
     )
     .map(async filePath => {
       const result = await removeFile(filePath)
@@ -371,9 +371,9 @@ async function generateLanguage(language) {
 }
 
 /**
- * Run
- */
-(async function () {
+  * Run
+  */
+(async function() {
   await generateComponents([
     { kind: 'component', name: 'Component', memo: false },
     { kind: 'component', name: 'MemoizedComponent', memo: true },
